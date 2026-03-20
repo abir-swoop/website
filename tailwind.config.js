@@ -31,6 +31,15 @@ export default {
       backgroundImage: {
         'gradient-brand': 'linear-gradient(135deg, #3924E0 0%, #A136FF 100%)',
       },
+      keyframes: {
+        marquee: {
+          '0%':   { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+      },
+      animation: {
+        marquee: 'marquee 28s linear infinite',
+      },
     },
   },
   plugins: [],

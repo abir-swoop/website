@@ -37,14 +37,22 @@ export interface StripContent {
 // Hero section
 // ---------------------------------------------------------------------------
 export interface HeroContent {
-  headline: string;
-  subheadline: string;
-  ctaPrimary: string;
-  ctaSecondary: string;
-  /** Path relative to /public */
-  heroImage: string;
+  /** Line 1: "Meet Swoop:" */
+  headlineLine1: string;
+  /** Line 2: "Eswatini's Super App" */
+  headlineLine2: string;
+  /** Plain part of the subheadline */
+  subPre: string;
+  /** Bold-highlighted part */
+  subBold: string;
+  /** Text after the bold part */
+  subPost: string;
   appStoreUrl: string;
   playStoreUrl: string;
+  /** Path to locale-specific phone mockup image (hero showcase) */
+  mockupImage: string;
+  /** Path to locale-specific hand-held phone mockup (download section) */
+  handMockupImage: string;
 }
 
 // ---------------------------------------------------------------------------
@@ -96,6 +104,36 @@ export interface Stat {
 }
 
 // ---------------------------------------------------------------------------
+// Join Swoop section
+// ---------------------------------------------------------------------------
+export interface JoinCard {
+  title: string;
+  subtitle: string;
+  bullets: string[];
+}
+
+export interface JoinContent {
+  headline: string;
+  subheadline: string;
+  merchant: JoinCard;
+  rider: JoinCard;
+  /** SZ: show app store buttons; NG: show a single contact CTA */
+  ctaVariant: 'app-stores' | 'contact';
+  contactLabel?: string;
+  contactUrl?: string;
+  appStoreUrl?: string;
+  playStoreUrl?: string;
+}
+
+// ---------------------------------------------------------------------------
+// FAQs
+// ---------------------------------------------------------------------------
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+// ---------------------------------------------------------------------------
 // Full page content shape
 // ---------------------------------------------------------------------------
 export interface PageContent {
@@ -103,14 +141,48 @@ export interface PageContent {
   country: Country;
   strip: StripContent;
   hero: HeroContent;
+  /** Bold city names in the Food Delivery card */
+  foodCities: string;
   categories: CategoryCard[];
   stats: Stat[];
   pricing: PricingContent;
   testimonials: Testimonial[];
-  /** Download / app section headline */
+  join: JoinContent;
+  faqs: FaqItem[];
+  /** Download / app section */
   downloadHeadline: string;
   downloadSubheadline: string;
+  /** 'app-stores' = show iOS + Android buttons; 'waitlist' = show email input */
+  downloadCtaVariant: 'app-stores' | 'waitlist';
+  appStoreUrl?: string;
+  playStoreUrl?: string;
 }
+
+// ---------------------------------------------------------------------------
+// Shared FAQs (same across all locales)
+// ---------------------------------------------------------------------------
+const SHARED_FAQS: FaqItem[] = [
+  {
+    question: 'What is Swoop?',
+    answer:   'Swoop is a super-app built for African cities — starting with food delivery. Order from your favourite restaurants and get it delivered fast. Stay tuned for more services.',
+  },
+  {
+    question: 'Where is Swoop available?',
+    answer:   "We're live across four regions in Eswatini — Mbabane, Ezulwini, Matsapha, and Manzini. Lagos, Nigeria to come very soon.",
+  },
+  {
+    question: 'How do I order?',
+    answer:   'Download the app and sign up with your phone number, choose your location, pick a restaurant, and check out. You can pay by card, or cash if in Eswatini. Your rider is tracked in real time.',
+  },
+  {
+    question: "I'm in Lagos. When do you launch?",
+    answer:   "We're launching in Lagos very soon. Join the waitlist to be first in line and get early access deals when we go live.",
+  },
+  {
+    question: 'How do I partner with Swoop?',
+    answer:   "Whether you're a restaurant owner or want to ride with us, you can download the app in Eswatini or use the Contact Us button in Nigeria. We're actively open to self-onboarding across Eswatini and assisting riders and merchants to come online with us for our Lagos launch.",
+  },
+];
 
 // ---------------------------------------------------------------------------
 // Nigeria (NG) content
@@ -125,15 +197,18 @@ const NG_CONTENT: PageContent = {
   },
 
   hero: {
-    headline: 'Delivered to your door in minutes',
-    subheadline:
-      'Food, groceries, and pharmacy essentials — all on one app. Available across major Nigerian cities.',
-    ctaPrimary:  'Get the App',
-    ctaSecondary: 'Learn More',
-    heroImage:    '/images/hero-ng.png',
+    headlineLine1: 'Something big is',
+    headlineLine2: 'coming to Lagos!',
+    subPre:      'The every-day app Lagos is waiting for, ',
+    subBold:     '',
+    subPost:     'starting with food delivery',
     appStoreUrl:  '#',
     playStoreUrl: '#',
+    mockupImage:     '/assets/Mockup-ng.png',
+    handMockupImage: '/assets/hand-mockup-ng.png',
   },
+
+  foodCities: 'Lagos, Abuja, and Port Harcourt',
 
   categories: [
     {
@@ -218,8 +293,28 @@ const NG_CONTENT: PageContent = {
     },
   ],
 
-  downloadHeadline:    'Get Thumo on your phone',
-  downloadSubheadline: 'Available on iOS and Android. Start your first delivery today.',
+  join: {
+    headline:    'Be Part of the Movement',
+    subheadline: 'Whether you want to earn or grow your business — Swoop is your partner.',
+    merchant: {
+      title:    'Partner as a Merchant',
+      subtitle: 'No upfront costs and guaranteed weekly payouts.',
+      bullets:  ['White-glove onboarding', 'Transparent pricing – no price manipulation', 'Completely free to start!'],
+    },
+    rider: {
+      title:    'Become a rider',
+      subtitle: 'The best earning rates of any food delivery app',
+      bullets:  ['Instant payouts', 'Flexible working', 'Incentive bonuses'],
+    },
+    ctaVariant:   'contact',
+    contactLabel: 'Contact Us',
+    contactUrl:   '#',
+  },
+
+  faqs: SHARED_FAQS,
+  downloadHeadline:    'Join the waitlist!',
+  downloadSubheadline: 'Sign up now and be the first to know when we go live —with exclusive early bird deals for customers!',
+  downloadCtaVariant:  'waitlist',
 };
 
 // ---------------------------------------------------------------------------
@@ -234,15 +329,18 @@ const SZ_CONTENT: PageContent = {
   },
 
   hero: {
-    headline: 'Fast delivery across Eswatini',
-    subheadline:
-      'Food, groceries, and pharmacy essentials delivered to your door across Mbabane and Manzini.',
-    ctaPrimary:  'Download the App',
-    ctaSecondary: 'How It Works',
-    heroImage:    '/images/hero-sz.png',
+    headlineLine1: 'Meet Swoop:',
+    headlineLine2: "Eswatini's Super App",
+    subPre:      'Discover Swoop, the super-app that delivers food right to your door! ',
+    subBold:     'New features, new regions, superior experience.',
+    subPost:     ' Try food delivery like never before below:',
     appStoreUrl:  '#',
     playStoreUrl: '#',
+    mockupImage:     '/assets/Mockup-sz.png',
+    handMockupImage: '/assets/hand-mockup-sz.png',
   },
+
+  foodCities: 'Mbabane, Matsapha, Ezulwini, and Manzini',
 
   categories: [
     {
@@ -327,8 +425,30 @@ const SZ_CONTENT: PageContent = {
     },
   ],
 
-  downloadHeadline:    'Get Thumo on your phone',
-  downloadSubheadline: 'Available on iOS and Android. First delivery on us.',
+  join: {
+    headline:    'Be Part of the Movement',
+    subheadline: 'Whether you want to earn or grow your business — Swoop is your partner.',
+    merchant: {
+      title:    'Partner as a Merchant',
+      subtitle: 'No upfront costs and guaranteed weekly payouts.',
+      bullets:  ['White-glove onboarding', 'Transparent pricing – no price manipulation', 'Completely free to start!'],
+    },
+    rider: {
+      title:    'Become a rider',
+      subtitle: 'The best earning rates of any food delivery app',
+      bullets:  ['Instant payouts', 'Flexible working', 'Incentive bonuses'],
+    },
+    ctaVariant:   'app-stores',
+    appStoreUrl:  '#',
+    playStoreUrl: '#',
+  },
+
+  faqs: SHARED_FAQS,
+  downloadHeadline:    'Experience Swoop!',
+  downloadSubheadline: 'From your favorite local spots to hidden gems, get hot meals brought straight to your door—no stress, no waiting.',
+  downloadCtaVariant:  'app-stores',
+  appStoreUrl:         '#',
+  playStoreUrl:        '#',
 };
 
 // ---------------------------------------------------------------------------
