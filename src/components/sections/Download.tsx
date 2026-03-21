@@ -48,10 +48,10 @@ export default function Download({ downloadHeadline, downloadSubheadline, downlo
   const [error, setError] = useState('');
 
   return (
-    <section id="contact-us" className="bg-brand-dark w-full px-6 md:px-16 py-4">
+    <section id="contact-us" className="bg-brand-dark w-full px-4 sm:px-6 md:px-16 py-4">
       <div
         ref={ref as React.RefObject<HTMLDivElement>}
-        className="relative bottom-[80px] max-w-[1280px] mx-auto rounded-[32px] overflow-hidden bg-brand-primary min-h-[420px] flex items-center"
+        className="relative bottom-[80px] max-w-[1280px] mx-auto rounded-[24px] sm:rounded-[32px] overflow-hidden bg-brand-primary min-h-[auto] sm:min-h-[420px] flex items-center"
       >
         {/* Texture overlay */}
         <img
@@ -62,33 +62,33 @@ export default function Download({ downloadHeadline, downloadSubheadline, downlo
         />
 
         {/* Left — text + CTA */}
-        <div className="relative z-10 flex flex-col gap-7 px-10 md:px-16 py-14 max-w-[700px]">
+        <div className="relative z-10 flex flex-col gap-5 sm:gap-7 px-5 sm:px-10 md:px-16 py-8 sm:py-14 w-full md:max-w-[700px]">
           <h2
-            className={`text-white font-extrabold text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.1] tracking-tight transition-all duration-700 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            className={`text-white font-extrabold text-[clamp(1.5rem,4.5vw,3.5rem)] leading-[1.1] tracking-tight transition-all duration-700 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           >
             {downloadHeadline}
           </h2>
           <p
-            className={`text-white/80 text-lg leading-relaxed transition-all duration-700 ease-out delay-100 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            className={`text-white/80 text-base sm:text-lg leading-relaxed transition-all duration-700 ease-out delay-100 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           >
             {downloadSubheadline}
           </p>
 
           {downloadCtaVariant === 'app-stores' ? (
-            <div className={`flex flex-wrap gap-3 transition-all duration-700 ease-out delay-200 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className={`flex flex-col sm:flex-row flex-wrap gap-3 transition-all duration-700 ease-out delay-200 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <a
                 href={appStoreUrl ?? '#'}
-                className="flex items-center gap-2 bg-white rounded-xl px-5 py-3 hover:bg-white/90 transition-colors"
+                className="flex items-center justify-center gap-2 bg-white rounded-xl px-5 py-3 hover:bg-white/90 transition-colors"
               >
                 <img src="/assets/apple-icon-hero.svg" alt="" className="w-4 h-4 object-contain" />
-                <span className="font-semibold text-[17px] text-[#0b0062] tracking-[-0.03em] whitespace-nowrap">Get it on iPhone</span>
+                <span className="font-semibold text-[15px] sm:text-[17px] text-[#0b0062] tracking-[-0.03em] whitespace-nowrap">Get it on iPhone</span>
               </a>
               <a
                 href={playStoreUrl ?? '#'}
-                className="flex items-center gap-2 bg-white rounded-xl px-5 py-3 hover:bg-white/90 transition-colors"
+                className="flex items-center justify-center gap-2 bg-white rounded-xl px-5 py-3 hover:bg-white/90 transition-colors"
               >
                 <img src="/assets/google-play-icon-hero.svg" alt="" className="w-4 h-4 object-contain" />
-                <span className="font-semibold text-[17px] text-[#0b0062] tracking-[-0.03em] whitespace-nowrap">Get it on Android</span>
+                <span className="font-semibold text-[15px] sm:text-[17px] text-[#0b0062] tracking-[-0.03em] whitespace-nowrap">Get it on Android</span>
               </a>
             </div>
           ) : (
@@ -111,18 +111,20 @@ export default function Download({ downloadHeadline, downloadSubheadline, downlo
                       setSubmitting(false);
                     }
                   }}
-                  className="flex flex-col gap-4"
+                  className="flex flex-col gap-3 sm:gap-4"
                 >
-                  <div className="flex flex-row gap-3">
-                    <input
-                      type="text"
-                      required
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder="Your name"
-                      className="rounded-xl px-4 py-3.5 text-[#4e4c84] font-medium text-base outline-none placeholder:text-[#4e4c84] bg-white/90 backdrop-blur-sm flex-1 min-w-0"
-                    />
-                    <div className="flex items-center bg-white/90 backdrop-blur-sm rounded-xl flex-[1.7] min-w-0">
+                  {/* Row 1: Name */}
+                  <input
+                    type="text"
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Your name"
+                    className="rounded-xl px-4 py-3 sm:py-3.5 text-[#4e4c84] font-medium text-base outline-none placeholder:text-[#4e4c84] bg-white/90 backdrop-blur-sm w-full"
+                  />
+                  {/* Row 2: Phone + User type */}
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <div className="flex items-center bg-white/90 backdrop-blur-sm rounded-xl flex-1 min-w-0">
                       <span className="pl-4 text-[#4e4c84] font-medium text-base select-none whitespace-nowrap">+234</span>
                       <input
                         type="tel"
@@ -135,7 +137,7 @@ export default function Download({ downloadHeadline, downloadSubheadline, downlo
                         maxLength={10}
                         pattern="\d{10}"
                         placeholder="8012345678"
-                        className="w-full rounded-xl px-2 py-3.5 text-[#4e4c84] font-medium text-base outline-none placeholder:text-[#4e4c84] bg-transparent min-w-0"
+                        className="w-full rounded-xl px-2 py-3 sm:py-3.5 text-[#4e4c84] font-medium text-base outline-none placeholder:text-[#4e4c84] bg-transparent min-w-0"
                       />
                     </div>
                     <div className="relative flex-1 min-w-0">
@@ -143,7 +145,7 @@ export default function Download({ downloadHeadline, downloadSubheadline, downlo
                         required
                         value={userType}
                         onChange={(e) => setUserType(e.target.value)}
-                        className="w-full rounded-xl px-4 py-3.5 text-[#4e4c84] font-medium text-base outline-none bg-white/90 backdrop-blur-sm appearance-none pr-9"
+                        className="w-full rounded-xl px-4 py-3 sm:py-3.5 text-[#4e4c84] font-medium text-base outline-none bg-white/90 backdrop-blur-sm appearance-none pr-9"
                       >
                         <option value="" disabled>I am a...</option>
                         <option value="user">User</option>
@@ -159,7 +161,7 @@ export default function Download({ downloadHeadline, downloadSubheadline, downlo
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="bg-[#0b0062] text-white font-semibold text-lg rounded-xl px-3 py-4 hover:bg-[#0d0080] transition-colors tracking-[-0.04em] w-full disabled:opacity-60"
+                    className="bg-[#0b0062] text-white font-semibold text-base sm:text-lg rounded-xl px-3 py-3.5 sm:py-4 hover:bg-[#0d0080] transition-colors tracking-[-0.04em] w-full disabled:opacity-60"
                   >
                     {submitting ? 'Submitting...' : 'Join the waitlist'}
                   </button>
@@ -169,9 +171,9 @@ export default function Download({ downloadHeadline, downloadSubheadline, downlo
           )}
         </div>
 
-        {/* Right — phone mockup */}
+        {/* Right — phone mockup (hidden on mobile) */}
         <div
-          className={`absolute right-0 bottom-[-80px] h-full flex items-end pointer-events-none transition-all duration-700 ease-out delay-300 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          className={`hidden md:flex absolute right-0 bottom-[-80px] h-full items-end pointer-events-none transition-all duration-700 ease-out delay-300 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
           <img
             src={mockupImage}

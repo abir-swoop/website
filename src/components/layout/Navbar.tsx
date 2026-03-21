@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Menu, X } from 'lucide-react';
 import { COUNTRIES, type Locale } from '../../config/contentConfig';
 
 // Figma assets
@@ -26,6 +26,7 @@ export default function Navbar({ locale }: Props) {
   const navigate = useNavigate();
   useLocation(); // re-render on route change
   const [open, setOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const dropRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown when clicking outside
@@ -49,6 +50,7 @@ export default function Navbar({ locale }: Props) {
 
   const handleNavClick = (sectionId: string, offset: number = 0) => (e: React.MouseEvent) => {
     e.preventDefault();
+    setMobileOpen(false);
     navigate(homeRoute);
     // Scroll to section after navigation
     setTimeout(() => {
@@ -62,14 +64,14 @@ export default function Navbar({ locale }: Props) {
 
   return (
     <nav className="sticky top-0 z-50 w-full bg-[#4d36ff]">
-      <div className="max-w-[1280px] mx-auto flex items-center justify-between px-10 py-4 gap-6">
+      <div className="max-w-[1280px] mx-auto flex items-center justify-between px-4 sm:px-10 py-3 sm:py-4 gap-3 sm:gap-6">
 
         {/* ── Left: Logo + Country selector ── */}
-        <div className="flex items-center gap-6 flex-1 min-w-0">
+        <div className="flex items-center gap-3 sm:gap-6 min-w-0">
 
           {/* Logo */}
           <a href={homeRoute} className="flex items-center shrink-0">
-            <div className="relative h-8 w-10">
+            <div className="relative h-7 sm:h-8 w-9 sm:w-10">
               <img
                 src={swoopIcon}
                 alt=""
@@ -79,7 +81,7 @@ export default function Navbar({ locale }: Props) {
             <img
               src={swoopWordmark}
               alt="Swoop"
-              className="h-[26px] w-[96px] mt-3 ml-[0.5px] object-contain"
+              className="h-[22px] sm:h-[26px] w-[80px] sm:w-[96px] mt-3 ml-[0.5px] object-contain"
             />
           </a>
 
@@ -96,7 +98,7 @@ export default function Navbar({ locale }: Props) {
                 alt={locale}
                 className="size-4 rounded-sm object-cover"
               />
-              <span className="font-semibold text-[16px] text-white tracking-[-0.04em] leading-none">
+              <span className="font-semibold text-[14px] sm:text-[16px] text-white tracking-[-0.04em] leading-none">
                 {locale}
               </span>
               <ChevronDown
@@ -136,7 +138,7 @@ export default function Navbar({ locale }: Props) {
           </div>
         </div>
 
-        {/* ── Centre: Nav links ── */}
+        {/* ── Centre: Nav links (desktop) ── */}
         <div className="hidden md:flex items-center gap-8 flex-1 justify-center">
           <a
             href="#home"
@@ -161,34 +163,100 @@ export default function Navbar({ locale }: Props) {
           ))}
         </div>
 
-        {/* ── Right: CTA ── */}
-        <div className="flex-1 flex justify-end">
-          {locale === 'NG' ? (
-            <a
-              href="#contact-us"
-              onClick={handleNavClick('contact-us', 200)}
-              className="bg-[#0b0062] hover:bg-[#0d0078] transition-colors rounded-xl px-5 py-4 shrink-0"
-            >
-              <span className="font-semibold text-[18px] text-white tracking-[-0.04em] leading-none whitespace-nowrap">
-                Join the waitlist
-              </span>
-            </a>
-          ) : (
-            <a
-              href="#contact-us"
-              onClick={handleNavClick('contact-us', 200)}
-              className="flex items-center gap-1.5 bg-[#0b0062] hover:bg-[#0d0078] transition-colors rounded-xl px-3 py-4 shrink-0"
-            >
-              <img src={appleIcon} alt="Apple" className="size-4 object-contain" />
-              <img src={googleIcon} alt="Google Play" className="size-4 object-contain" />
-              <span className="font-semibold text-[18px] text-white tracking-[-0.04em] leading-none whitespace-nowrap">
-                Download the App
-              </span>
-            </a>
-          )}
+        {/* ── Right: CTA (desktop) + Hamburger (mobile) ── */}
+        <div className="flex items-center gap-3">
+          {/* Desktop CTA */}
+          <div className="hidden md:block">
+            {locale === 'NG' ? (
+              <a
+                href="#contact-us"
+                onClick={handleNavClick('contact-us', 200)}
+                className="bg-[#0b0062] hover:bg-[#0d0078] transition-colors rounded-xl px-5 py-3 sm:py-4 shrink-0"
+              >
+                <span className="font-semibold text-[16px] sm:text-[18px] text-white tracking-[-0.04em] leading-none whitespace-nowrap">
+                  Join the waitlist
+                </span>
+              </a>
+            ) : (
+              <a
+                href="#contact-us"
+                onClick={handleNavClick('contact-us', 200)}
+                className="flex items-center gap-1.5 bg-[#0b0062] hover:bg-[#0d0078] transition-colors rounded-xl px-3 py-3 sm:py-4 shrink-0"
+              >
+                <img src={appleIcon} alt="Apple" className="size-4 object-contain" />
+                <img src={googleIcon} alt="Google Play" className="size-4 object-contain" />
+                <span className="font-semibold text-[16px] sm:text-[18px] text-white tracking-[-0.04em] leading-none whitespace-nowrap">
+                  Download the App
+                </span>
+              </a>
+            )}
+          </div>
+
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setMobileOpen(v => !v)}
+            className="md:hidden text-white p-1"
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
 
       </div>
+
+      {/* ── Mobile menu ── */}
+      {mobileOpen && (
+        <div className="md:hidden bg-[#4d36ff] border-t border-white/10 px-4 pb-4">
+          <div className="flex flex-col gap-1">
+            <a
+              href="#home"
+              onClick={handleNavClick('home')}
+              className="font-medium text-[16px] text-white/80 hover:text-white py-3 transition-opacity"
+            >
+              Home
+            </a>
+            {[
+              { label: 'Services', id: 'services', offset: 0 },
+              { label: 'Contact Us', id: 'contact-us', offset: 200 },
+              { label: 'FAQs', id: 'faqs', offset: 0 }
+            ].map(({ label, id, offset }) => (
+              <a
+                key={label}
+                href={`#${id}`}
+                onClick={handleNavClick(id, offset)}
+                className="font-medium text-[16px] text-white/80 hover:text-white py-3 transition-opacity"
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+          <div className="mt-3">
+            {locale === 'NG' ? (
+              <a
+                href="#contact-us"
+                onClick={handleNavClick('contact-us', 200)}
+                className="block text-center bg-[#0b0062] hover:bg-[#0d0078] transition-colors rounded-xl px-5 py-3"
+              >
+                <span className="font-semibold text-[16px] text-white tracking-[-0.04em] leading-none">
+                  Join the waitlist
+                </span>
+              </a>
+            ) : (
+              <a
+                href="#contact-us"
+                onClick={handleNavClick('contact-us', 200)}
+                className="flex items-center justify-center gap-1.5 bg-[#0b0062] hover:bg-[#0d0078] transition-colors rounded-xl px-3 py-3"
+              >
+                <img src={appleIcon} alt="Apple" className="size-4 object-contain" />
+                <img src={googleIcon} alt="Google Play" className="size-4 object-contain" />
+                <span className="font-semibold text-[16px] text-white tracking-[-0.04em] leading-none">
+                  Download the App
+                </span>
+              </a>
+            )}
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

@@ -17,8 +17,8 @@ export default function Services({ foodCities }: Props) {
   const [ref, inView] = useInView();
 
   return (
-    <section ref={ref as React.RefObject<HTMLDivElement>} className="w-full bg-white py-20 px-5" id="services">
-      <div className="max-w-[1280px] mx-auto flex flex-col gap-10 mt-12">
+    <section ref={ref as React.RefObject<HTMLDivElement>} className="w-full bg-white md:py-20 px-5" id="services">
+      <div className="max-w-[1280px] mx-auto flex flex-col gap-10 md:mt-12">
 
         {/* ── Section header ── */}
         <div className="flex flex-col gap-3 items-center text-center max-w-[632px] mx-auto">
@@ -34,7 +34,7 @@ export default function Services({ foodCities }: Props) {
         </div>
 
         {/* ── Row 1: Food Delivery ── */}
-        <div className={`relative bg-[#a136ff] rounded-[32px] overflow-hidden h-[420px] md:h-[525px] transition-all duration-700 ease-out delay-200 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div className={`relative bg-[#a136ff] rounded-[24px] sm:rounded-[32px] overflow-hidden h-[300px] sm:h-[420px] md:h-[525px] transition-all duration-700 ease-out delay-200 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           {/* Background maze pattern — overlay blend keeps the purple hue */}
           <img
             src={foodBg}
@@ -44,11 +44,11 @@ export default function Services({ foodCities }: Props) {
           />
 
           {/* Text — top-left, above pattern */}
-          <div className="absolute left-[60px] top-[72px] flex flex-col gap-1 text-white max-w-[50%] z-10">
-            <h3 className="font-extrabold text-[48px] tracking-[-0.02em] leading-none">
+          <div className="absolute left-5 sm:left-10 md:left-[60px] top-6 sm:top-12 md:top-[72px] flex flex-col gap-1 text-white max-w-[65%] sm:max-w-[55%] md:max-w-[50%] z-10">
+            <h3 className="font-extrabold text-[28px] sm:text-[36px] md:text-[48px] tracking-[-0.02em] leading-none">
               Food Delivery
             </h3>
-            <p className="text-[20px] leading-snug mt-2">
+            <p className="text-[14px] sm:text-[17px] md:text-[20px] leading-snug mt-2">
               {`The largest restaurant chains and local restaurants across `}
               <strong className="font-bold">{foodCities}</strong>
               {`. Delivered straight to your door.`}
@@ -60,7 +60,7 @@ export default function Services({ foodCities }: Props) {
             src={foodIllustration}
             alt=""
             aria-hidden="true"
-            className="absolute right-[-150px] -bottom-[220px] h-[300px] md:h-[500px] w-auto object-contain pointer-events-none z-10"
+            className="absolute right-[-80px] sm:right-[-120px] md:right-[-150px] -bottom-[120px] sm:-bottom-[180px] md:-bottom-[220px] h-[220px] sm:h-[350px] md:h-[500px] w-auto object-contain pointer-events-none z-10"
           />
         </div>
 
@@ -76,9 +76,9 @@ export default function Services({ foodCities }: Props) {
         <div className={`grid grid-cols-1 md:grid-cols-2 gap-5 transition-all duration-700 ease-out delay-400 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
 
           {/* Groceries */}
-          <div className="relative bg-[#2a3143] rounded-[32px] overflow-hidden h-[250px]">
-            <div className="absolute left-[48px] top-[53px] z-10">
-              <h3 className="font-extrabold text-white text-[48px] tracking-[-0.02em] leading-none">
+          <div className="relative bg-[#2a3143] rounded-[24px] sm:rounded-[32px] overflow-hidden h-[200px] sm:h-[250px]">
+            <div className="absolute left-5 sm:left-[48px] top-6 sm:top-[53px] z-10">
+              <h3 className="font-extrabold text-white text-[28px] sm:text-[36px] md:text-[48px] tracking-[-0.02em] leading-none">
                 Groceries
               </h3>
             </div>
@@ -91,9 +91,9 @@ export default function Services({ foodCities }: Props) {
           </div>
 
           {/* Pharmacy */}
-          <div className="relative bg-[#2a3143] rounded-[32px] overflow-hidden h-[250px]">
-            <div className="absolute left-[48px] top-[53px] z-10">
-              <h3 className="font-extrabold text-white text-[48px] tracking-[-0.02em] leading-none">
+          <div className="relative bg-[#2a3143] rounded-[24px] sm:rounded-[32px] overflow-hidden h-[200px] sm:h-[250px]">
+            <div className="absolute left-5 sm:left-[48px] top-6 sm:top-[53px] z-10">
+              <h3 className="font-extrabold text-white text-[28px] sm:text-[36px] md:text-[48px] tracking-[-0.02em] leading-none">
                 Pharmacy
               </h3>
             </div>

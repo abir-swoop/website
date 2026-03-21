@@ -30,7 +30,7 @@ export default function Hero({ hero, locale = 'NG' }: Props) {
   return (
     <>
       {/* ── Top: text + CTAs ── */}
-      <section id="home" className="w-full h-[80vh] bg-[#4d36ff] relative overflow-hidden " style={{ minHeight: '600px' }}>
+      <section id="home" className="w-full h-[70vh] sm:h-[80vh] bg-[#4d36ff] relative overflow-hidden" style={{ minHeight: '500px' }}>
         {/* Illustration pinned to bottom, full width, behind nothing — it IS the bg decoration */}
         <img
           src={heroImage}
@@ -97,11 +97,11 @@ export default function Hero({ hero, locale = 'NG' }: Props) {
 
       {/* ── Bottom: App Showcase ── */}
       <section className="w-full bg-white" id="app-showcase" ref={mockupRef as React.RefObject<HTMLElement>}>
-        <div className="max-w-[400px] mb-[450px] mx-auto flex items-center justify-center py-16 px-6">
+        <div className="max-w-[280px] sm:max-w-[340px] mx-auto flex items-center justify-center py-10 sm:py-16 px-6">
           <img
             src={hero.mockupImage}
             alt="Swoop app mockup"
-            className={`w-full absolute bottom-[-600px] max-w-sm object-contain select-none transition-all duration-1000 ease-out ${mockupInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+            className={`w-full object-contain select-none transition-all duration-1000 ease-out ${mockupInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
             draggable={false}
           />
         </div>
