@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from 'react';
  * Returns [ref, inView] — attach ref to the element you want to observe.
  * inView flips to true once the element enters the viewport (stays true).
  */
-export function useInView(threshold = 0.15): [React.RefObject<HTMLElement>, boolean] {
-  const ref = useRef<HTMLElement>(null);
+export function useInView(threshold = 0.15): [React.RefObject<HTMLElement | null>, boolean] {
+  const ref = useRef<HTMLElement | null>(null);
   const [inView, setInView] = useState(false);
 
   useEffect(() => {

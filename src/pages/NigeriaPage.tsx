@@ -13,7 +13,7 @@ const content = CONTENT_MAP['NG'];
 export default function NigeriaPage() {
   return (
     <Layout content={content}>
-      <Hero hero={content.hero} />
+      <Hero hero={content.hero} locale="NG" />
       <Services foodCities={content.foodCities} />
       <Movement join={content.join} />
       <Cta />

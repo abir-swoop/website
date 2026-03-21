@@ -13,6 +13,7 @@ export default function Faqs({ faqs }: FaqsProps) {
 
   return (
     <section
+      id="faqs"
       ref={ref as React.RefObject<HTMLDivElement>}
       className="bg-white w-full py-24 md:py-36 px-6"
     >

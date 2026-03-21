@@ -17,8 +17,8 @@ interface Props {
  */
 export default function AnnouncementStrip({ strip }: Props) {
   return (
-    <div className="w-full bg-[#1f138f] py-[10px] px-5">
-      <div className="max-w-[1280px] mx-auto flex items-center justify-center">
+    <div className="w-full bg-[#1f138f] px-5">
+      <div className="max-w-[1280px] mx-auto flex items-center justify-center h-12">
         {strip.variant === 'rebrand' ? (
           /* SZ — "THUMO is now Swoop" */
           <div className="flex items-center gap-2">

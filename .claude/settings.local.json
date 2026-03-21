@@ -51,7 +51,9 @@
       "Bash(curl -sL \"https://www.figma.com/api/mcp/asset/03d1cf42-45f8-4ccf-b6d0-143b67703fff\" -o download-bg-texture.png)",
       "Bash(curl -sL \"https://www.figma.com/api/mcp/asset/d188bcd7-48d4-471c-b182-bb93f080ab1b\" -o swoop-wordmark-footer.png)",
       "Bash(curl -sL \"https://www.figma.com/api/mcp/asset/33528cfa-1130-422a-adb6-934c71cf1d0a\" -o swoop-icon-footer.png)",
-      "Bash(curl -sL \"https://www.figma.com/api/mcp/asset/ceda377d-a4c3-4aaa-8512-a7e4fe006366\" -o \"c:/Users/Lenovo/Desktop/Coding/Hackathons-comps-intern/thumo/website/public/assets/download-bg-texture.png\")"
+      "Bash(curl -sL \"https://www.figma.com/api/mcp/asset/ceda377d-a4c3-4aaa-8512-a7e4fe006366\" -o \"c:/Users/Lenovo/Desktop/Coding/Hackathons-comps-intern/thumo/website/public/assets/download-bg-texture.png\")",
+      "Bash(identify \"/c:/Users/Lenovo/Desktop/Coding/Hackathons-comps-intern/thumo/website/public/assets/Lagos-Hero.png\" \"/c:/Users/Lenovo/Desktop/Coding/Hackathons-comps-intern/thumo/website/public/assets/bg-sz.png\")",
+      "Bash(npm run:*)"
     ]
   }
 }

@@ -4,6 +4,8 @@
  * Horizontally scrolling marquee of partner logos (right → left, infinite).
  */
 
+import { useInView } from '../../hooks/useInView';
+
 const logos: { src: string; alt: string; height: number }[] = [
   { src: '/assets/partner-kfc.png',            alt: 'KFC',                  height: 96  },
   { src: '/assets/partner-pizza-inn.png',       alt: 'Pizza Inn',            height: 96  },
@@ -14,14 +16,15 @@ const logos: { src: string; alt: string; height: number }[] = [
 ];
 
 export default function Partners() {
+  const [ref, inView] = useInView();
   // Duplicate logos for seamless infinite loop
   const track = [...logos, ...logos];
 
   return (
-    <section className="w-full bg-[#f3f2ff] py-20 overflow-hidden">
+    <section ref={ref as React.RefObject<HTMLDivElement>} className="w-full bg-[#f3f2ff] py-20 overflow-hidden">
       {/* Heading */}
       <h2
-        className="font-extrabold text-[#07003b] tracking-[-0.02em] text-center mb-14"
+        className={`font-extrabold text-[#07003b] tracking-[-0.02em] text-center mb-14 transition-all duration-700 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         style={{ fontSize: 'clamp(2rem, 5vw, 4rem)' }}
       >
         Some of our local partners
@@ -39,7 +42,7 @@ export default function Partners() {
       `}</style>
 
       <div
-        className="relative"
+        className={`relative transition-all duration-700 ease-out delay-100 ${inView ? 'opacity-100' : 'opacity-0'}`}
         style={{
           maskImage:
             'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',

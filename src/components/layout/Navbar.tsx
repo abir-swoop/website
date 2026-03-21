@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { useNavigate, useLocation, NavLink } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
 import { COUNTRIES, type Locale } from '../../config/contentConfig';
 
@@ -13,12 +13,6 @@ const flagSz = '/assets/flag-sz.png';
 
 const FLAG_MAP: Record<Locale, string> = { NG: flagNg, SZ: flagSz };
 
-const NAV_LINKS = [
-  { label: 'Home', to: '' }, // resolved per locale in component
-  { label: 'Services', href: '#services' },
-  { label: 'Contact Us', href: '#contact' },
-  { label: 'Join Us', href: '#join' },
-];
 
 interface Props {
   locale: Locale;
@@ -30,7 +24,7 @@ interface Props {
  */
 export default function Navbar({ locale }: Props) {
   const navigate = useNavigate();
-  const location = useLocation();
+  useLocation(); // re-render on route change
   const [open, setOpen] = useState(false);
   const dropRef = useRef<HTMLDivElement>(null);
 
@@ -52,6 +46,19 @@ export default function Navbar({ locale }: Props) {
   }
 
   const homeRoute = locale === 'NG' ? '/' : '/sz';
+
+  const handleNavClick = (sectionId: string, offset: number = 0) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigate(homeRoute);
+    // Scroll to section after navigation
+    setTimeout(() => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const top = element.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    }, 100);
+  };
 
   return (
     <nav className="sticky top-0 z-50 w-full bg-[#4d36ff]">
@@ -131,20 +138,22 @@ export default function Navbar({ locale }: Props) {
 
         {/* ── Centre: Nav links ── */}
         <div className="hidden md:flex items-center gap-8 flex-1 justify-center">
-          <NavLink
-            to={homeRoute}
-            end
-            className={({ isActive }) =>
-              `font-medium text-[16px] leading-none transition-opacity
-               ${isActive ? 'text-white' : 'text-white/80 hover:text-white'}`
-            }
+          <a
+            href="#home"
+            onClick={handleNavClick('home')}
+            className="font-medium text-[16px] text-white/80 hover:text-white leading-none transition-opacity whitespace-nowrap"
           >
             Home
-          </NavLink>
-          {['Services', 'Contact Us', 'Join Us'].map(label => (
+          </a>
+          {[
+            { label: 'Services', id: 'services', offset: 0 },
+            { label: 'Contact Us', id: 'contact-us', offset: 200 },
+            { label: 'FAQs', id: 'faqs', offset: 0 }
+          ].map(({ label, id, offset }) => (
             <a
               key={label}
-              href={`#${label.toLowerCase().replace(' ', '-')}`}
+              href={`#${id}`}
+              onClick={handleNavClick(id, offset)}
               className="font-medium text-[16px] text-white/80 hover:text-white leading-none transition-opacity whitespace-nowrap"
             >
               {label}
@@ -152,18 +161,31 @@ export default function Navbar({ locale }: Props) {
           ))}
         </div>
 
-        {/* ── Right: Download CTA ── */}
+        {/* ── Right: CTA ── */}
         <div className="flex-1 flex justify-end">
-          <a
-            href="#download"
-            className="flex items-center gap-1.5 bg-[#0b0062] hover:bg-[#0d0078] transition-colors rounded-xl px-3 py-4 shrink-0"
-          >
-            <img src={appleIcon} alt="Apple" className="size-4 object-contain" />
-            <img src={googleIcon} alt="Google Play" className="size-4 object-contain" />
-            <span className="font-semibold text-[18px] text-white tracking-[-0.04em] leading-none whitespace-nowrap">
-              Download the App
-            </span>
-          </a>
+          {locale === 'NG' ? (
+            <a
+              href="#contact-us"
+              onClick={handleNavClick('contact-us', 200)}
+              className="bg-[#0b0062] hover:bg-[#0d0078] transition-colors rounded-xl px-5 py-4 shrink-0"
+            >
+              <span className="font-semibold text-[18px] text-white tracking-[-0.04em] leading-none whitespace-nowrap">
+                Join the waitlist
+              </span>
+            </a>
+          ) : (
+            <a
+              href="#contact-us"
+              onClick={handleNavClick('contact-us', 200)}
+              className="flex items-center gap-1.5 bg-[#0b0062] hover:bg-[#0d0078] transition-colors rounded-xl px-3 py-4 shrink-0"
+            >
+              <img src={appleIcon} alt="Apple" className="size-4 object-contain" />
+              <img src={googleIcon} alt="Google Play" className="size-4 object-contain" />
+              <span className="font-semibold text-[18px] text-white tracking-[-0.04em] leading-none whitespace-nowrap">
+                Download the App
+              </span>
+            </a>
+          )}
         </div>
 
       </div>

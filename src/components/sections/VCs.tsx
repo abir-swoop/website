@@ -25,14 +25,12 @@ export default function VCs() {
           Backed by
         </h2>
 
-        <div
-          className={`flex flex-wrap justify-center items-center gap-2 transition-all duration-700 ease-out delay-100 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-        >
+        <div className="flex flex-wrap justify-center items-center gap-2">
           {vcLogos.map((logo, i) => (
             <div
               key={logo.alt}
-              className="opacity-70 p-3"
-              style={{ transitionDelay: `${100 + i * 80}ms` }}
+              className={`p-3 transition-all duration-700 ease-out ${inView ? 'opacity-70 translate-y-0' : 'opacity-0 translate-y-6'}`}
+              style={{ transitionDelay: `${150 + i * 100}ms` }}
             >
               <img
                 src={logo.src}

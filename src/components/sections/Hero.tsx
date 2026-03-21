@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+import { useInView } from '../../hooks/useInView';
 import type { HeroContent } from '../../config/contentConfig';
 
 const appleIcon = '/assets/apple-icon-hero.svg';
@@ -5,6 +7,7 @@ const googleIcon = '/assets/google-play-icon-hero.svg';
 
 interface Props {
   hero: HeroContent;
+  locale?: 'NG' | 'SZ';
 }
 
 /**
@@ -14,17 +17,26 @@ interface Props {
  *   [purple bg] headline + subtext + 2 download CTAs   (centred)
  *   [white bg]  App Showcase placeholder               (phone mockup added later)
  */
-export default function Hero({ hero }: Props) {
+export default function Hero({ hero, locale = 'NG' }: Props) {
+  const heroImage = locale === 'SZ' ? '/assets/bg-sz.png' : '/assets/Lagos-Hero.png';
+  const [loaded, setLoaded] = useState(false);
+  const [mockupRef, mockupInView] = useInView(0.1);
+
+  useEffect(() => {
+    const t = setTimeout(() => setLoaded(true), 100);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
     <>
       {/* ── Top: text + CTAs ── */}
-      <section className="w-full bg-[#4d36ff] relative overflow-hidden " style={{ minHeight: '600px' }}>
+      <section id="home" className="w-full h-[80vh] bg-[#4d36ff] relative overflow-hidden " style={{ minHeight: '600px' }}>
         {/* Illustration pinned to bottom, full width, behind nothing — it IS the bg decoration */}
         <img
-          src="/assets/Lagos-Hero.png"
+          src={heroImage}
           alt=""
           aria-hidden="true"
-          className="absolute bottom-0 left-0 w-full pointer-events-none select-none"
+          className={`absolute bottom-0 left-0 w-full h-full pointer-events-none select-none object-cover object-bottom transition-all duration-1000 ease-out delay-500 ${loaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}
         />
 
         {/* Content sits above the illustration via z-10 */}
@@ -32,7 +44,7 @@ export default function Hero({ hero }: Props) {
 
           {/* Headline */}
           <h1
-            className="font-extrabold text-white leading-[1.05] w-full max-w-[862px]"
+            className={`font-extrabold text-white leading-[1.05] w-full max-w-[862px] transition-all duration-700 ease-out ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
             style={{ fontSize: 'clamp(2.5rem, 7vw, 5.5rem)' }}
           >
             {hero.headlineLine1}
@@ -41,44 +53,55 @@ export default function Hero({ hero }: Props) {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-white/80 text-[20px] leading-relaxed max-w-[734px]">
+          <p className={`text-white/80 text-[20px] leading-relaxed max-w-[734px] transition-all duration-700 ease-out delay-200 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
             {hero.subPre}
             <strong className="font-bold text-white">{hero.subBold}</strong>
             {hero.subPost}
           </p>
 
-          {/* Download CTAs */}
-          <div className="flex flex-wrap gap-3 items-center justify-center">
+          {/* CTAs */}
+          {hero.ctaVariant === 'waitlist' ? (
             <a
-              href={hero.appStoreUrl}
-              className="flex items-center gap-2 bg-white rounded-xl px-5 py-3 w-[200px] justify-center hover:bg-white/90 transition-colors"
+              href={hero.waitlistUrl ?? '#'}
+              className={`bg-white rounded-xl px-8 py-3 hover:bg-white/90 transition-all duration-700 ease-out delay-[400ms] ${loaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'}`}
             >
-              <img src={appleIcon} alt="" className="size-4 object-contain" />
               <span className="font-semibold text-[18px] text-[#0b0062] tracking-[-0.04em] whitespace-nowrap">
-                Get it on iPhone
+                Join the waitlist
               </span>
             </a>
-            <a
-              href={hero.playStoreUrl}
-              className="flex items-center gap-2 bg-white rounded-xl px-5 py-3 w-[200px] justify-center hover:bg-white/90 transition-colors"
-            >
-              <img src={googleIcon} alt="" className="size-4 object-contain" />
-              <span className="font-semibold text-[18px] text-[#0b0062] tracking-[-0.04em] whitespace-nowrap">
-                Get it on Android
-              </span>
-            </a>
-          </div>
+          ) : (
+            <div className={`flex flex-wrap gap-3 items-center justify-center transition-all duration-700 ease-out delay-[400ms] ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+              <a
+                href={hero.appStoreUrl}
+                className="flex items-center gap-2 bg-white rounded-xl px-5 py-3 w-[200px] justify-center hover:bg-white/90 transition-colors"
+              >
+                <img src={appleIcon} alt="" className="size-4 object-contain" />
+                <span className="font-semibold text-[18px] text-[#0b0062] tracking-[-0.04em] whitespace-nowrap">
+                  Get it on iPhone
+                </span>
+              </a>
+              <a
+                href={hero.playStoreUrl}
+                className="flex items-center gap-2 bg-white rounded-xl px-5 py-3 w-[200px] justify-center hover:bg-white/90 transition-colors"
+              >
+                <img src={googleIcon} alt="" className="size-4 object-contain" />
+                <span className="font-semibold text-[18px] text-[#0b0062] tracking-[-0.04em] whitespace-nowrap">
+                  Get it on Android
+                </span>
+              </a>
+            </div>
+          )}
 
         </div>
       </section>
 
       {/* ── Bottom: App Showcase ── */}
-      <section className="w-full bg-white" id="app-showcase">
+      <section className="w-full bg-white" id="app-showcase" ref={mockupRef as React.RefObject<HTMLElement>}>
         <div className="max-w-[400px] mb-[450px] mx-auto flex items-center justify-center py-16 px-6">
           <img
             src={hero.mockupImage}
             alt="Swoop app mockup"
-            className="w-full absolute bottom-[-600px] max-w-sm object-contain select-none"
+            className={`w-full absolute bottom-[-600px] max-w-sm object-contain select-none transition-all duration-1000 ease-out ${mockupInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
             draggable={false}
           />
         </div>

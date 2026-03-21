@@ -8,6 +8,7 @@
  */
 
 import type { JoinContent } from '../../config/contentConfig';
+import { useInView } from '../../hooks/useInView';
 
 const appleIcon      = '/assets/apple-icon-hero.svg';
 const googlePlayIcon = '/assets/google-play-icon.svg';
@@ -63,13 +64,14 @@ function ContactButton({ label, url }: { label: string; url: string }) {
 
 export default function Movement({ join }: Props) {
   const { headline, subheadline, merchant, rider, ctaVariant, contactLabel, contactUrl, appStoreUrl, playStoreUrl } = join;
+  const [ref, inView] = useInView();
 
   return (
-    <section className="w-full bg-brand-primary py-20 px-5">
+    <section id="movement" ref={ref as React.RefObject<HTMLDivElement>} className="w-full bg-brand-primary py-20 px-5">
       <div className="max-w-[1280px] mx-auto flex flex-col gap-12">
 
         {/* Heading */}
-        <div className="text-center">
+        <div className={`text-center transition-all duration-700 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <h2
             className="font-extrabold text-white leading-tight tracking-[-0.03em]"
             style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}
@@ -82,7 +84,7 @@ export default function Movement({ join }: Props) {
         </div>
 
         {/* Card 1 — Merchant (image left, text right) */}
-        <div className="rounded-2xl overflow-hidden bg-white flex flex-col md:flex-row">
+        <div className={`rounded-2xl overflow-hidden bg-white flex flex-col md:flex-row transition-all duration-700 ease-out delay-200 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {/* Illustration */}
           <div className="md:w-[40%] bg-[#e8e4ff] flex items-end justify-center shrink-0 overflow-hidden" style={{ minHeight: 300 }}>
             <img
@@ -122,7 +124,7 @@ export default function Movement({ join }: Props) {
         </div>
 
         {/* Card 2 — Rider (text left, image right) */}
-        <div className="rounded-2xl overflow-hidden bg-white flex flex-col-reverse md:flex-row">
+        <div className={`rounded-2xl overflow-hidden bg-white flex flex-col-reverse md:flex-row transition-all duration-700 ease-out delay-[400ms] ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {/* Content */}
           <div className="flex flex-col w-full justify-center gap-6 px-10 md:px-20 py-10 md:py-12">
             <div>

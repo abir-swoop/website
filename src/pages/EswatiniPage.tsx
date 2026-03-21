@@ -14,7 +14,7 @@ const content = CONTENT_MAP['SZ'];
 export default function EswatiniPage() {
   return (
     <Layout content={content}>
-      <Hero hero={content.hero} />
+      <Hero hero={content.hero} locale="SZ" />
       <Services foodCities={content.foodCities} />
       <Partners />
       <Movement join={content.join} />

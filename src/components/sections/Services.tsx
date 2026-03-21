@@ -2,6 +2,8 @@
  * Services section — Figma node 16:280
  */
 
+import { useInView } from '../../hooks/useInView';
+
 const foodBg          = '/assets/Background.png';
 const foodIllustration = '/assets/Food-Delivery.png';
 const groceryIllustration = '/assets/grocery.png';
@@ -12,25 +14,27 @@ interface Props {
 }
 
 export default function Services({ foodCities }: Props) {
+  const [ref, inView] = useInView();
+
   return (
-    <section className="w-full bg-white py-20 px-5" id="services">
-      <div className="max-w-[1280px] mx-auto flex flex-col gap-10">
+    <section ref={ref as React.RefObject<HTMLDivElement>} className="w-full bg-white py-20 px-5" id="services">
+      <div className="max-w-[1280px] mx-auto flex flex-col gap-10 mt-12">
 
         {/* ── Section header ── */}
         <div className="flex flex-col gap-3 items-center text-center max-w-[632px] mx-auto">
           <h2
-            className="font-extrabold text-[#07003b] tracking-[-0.02em] leading-[1]"
+            className={`font-extrabold text-[#07003b] tracking-[-0.02em] leading-[1] transition-all duration-700 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
             style={{ fontSize: 'clamp(2rem, 5vw, 4.5rem)' }}
           >
             Everything you need, on-demand
           </h2>
-          <p className="text-[#595672] text-[20px] leading-normal">
+          <p className={`text-[#595672] text-[20px] leading-normal transition-all duration-700 ease-out delay-100 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             From meals to essentials, Swoop brings your city to your doorstep.
           </p>
         </div>
 
         {/* ── Row 1: Food Delivery ── */}
-        <div className="relative bg-[#a136ff] rounded-[32px] overflow-hidden h-[420px] md:h-[525px]">
+        <div className={`relative bg-[#a136ff] rounded-[32px] overflow-hidden h-[420px] md:h-[525px] transition-all duration-700 ease-out delay-200 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           {/* Background maze pattern — overlay blend keeps the purple hue */}
           <img
             src={foodBg}
@@ -62,14 +66,14 @@ export default function Services({ foodCities }: Props) {
 
         {/* ── "Coming Soon" heading ── */}
         <h3
-          className="font-extrabold text-[#07003b] tracking-[-0.02em] leading-none text-center"
+          className={`font-extrabold text-[#07003b] tracking-[-0.02em] leading-none text-center transition-all duration-700 ease-out delay-300 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           style={{ fontSize: 'clamp(2rem, 4vw, 4rem)' }}
         >
           Coming Soon..
         </h3>
 
         {/* ── Row 2: Groceries + Pharmacy ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className={`grid grid-cols-1 md:grid-cols-2 gap-5 transition-all duration-700 ease-out delay-400 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
 
           {/* Groceries */}
           <div className="relative bg-[#2a3143] rounded-[32px] overflow-hidden h-[250px]">

@@ -53,6 +53,9 @@ export interface HeroContent {
   mockupImage: string;
   /** Path to locale-specific hand-held phone mockup (download section) */
   handMockupImage: string;
+  /** 'app-stores' = iOS + Android buttons; 'waitlist' = single waitlist button */
+  ctaVariant: 'app-stores' | 'waitlist';
+  waitlistUrl?: string;
 }
 
 // ---------------------------------------------------------------------------
@@ -202,10 +205,12 @@ const NG_CONTENT: PageContent = {
     subPre:      'The every-day app Lagos is waiting for, ',
     subBold:     '',
     subPost:     'starting with food delivery',
-    appStoreUrl:  '#',
-    playStoreUrl: '#',
+    appStoreUrl:  'https://apps.apple.com/us/app/thumo/id6749094829',
+    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.thumoapp.users&pcampaignid=web_share',
     mockupImage:     '/assets/Mockup-ng.png',
     handMockupImage: '/assets/hand-mockup-ng.png',
+    ctaVariant:      'waitlist',
+    waitlistUrl:     '#contact-us',
   },
 
   foodCities: 'Lagos, Abuja, and Port Harcourt',
@@ -308,7 +313,7 @@ const NG_CONTENT: PageContent = {
     },
     ctaVariant:   'contact',
     contactLabel: 'Contact Us',
-    contactUrl:   '#',
+    contactUrl:   '#contact-us',
   },
 
   faqs: SHARED_FAQS,
@@ -334,10 +339,11 @@ const SZ_CONTENT: PageContent = {
     subPre:      'Discover Swoop, the super-app that delivers food right to your door! ',
     subBold:     'New features, new regions, superior experience.',
     subPost:     ' Try food delivery like never before below:',
-    appStoreUrl:  '#',
-    playStoreUrl: '#',
+    appStoreUrl:  'https://apps.apple.com/us/app/thumo/id6749094829',
+    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.thumoapp.users&pcampaignid=web_share',
     mockupImage:     '/assets/Mockup-sz.png',
     handMockupImage: '/assets/hand-mockup-sz.png',
+    ctaVariant:      'app-stores',
   },
 
   foodCities: 'Mbabane, Matsapha, Ezulwini, and Manzini',
@@ -439,16 +445,16 @@ const SZ_CONTENT: PageContent = {
       bullets:  ['Instant payouts', 'Flexible working', 'Incentive bonuses'],
     },
     ctaVariant:   'app-stores',
-    appStoreUrl:  '#',
-    playStoreUrl: '#',
+    appStoreUrl:  'https://apps.apple.com/us/app/thumo/id6749094829',
+    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.thumoapp.users&pcampaignid=web_share',
   },
 
   faqs: SHARED_FAQS,
   downloadHeadline:    'Experience Swoop!',
   downloadSubheadline: 'From your favorite local spots to hidden gems, get hot meals brought straight to your door—no stress, no waiting.',
   downloadCtaVariant:  'app-stores',
-  appStoreUrl:         '#',
-  playStoreUrl:        '#',
+  appStoreUrl:         'https://apps.apple.com/us/app/thumo/id6749094829',
+  playStoreUrl:        'https://play.google.com/store/apps/details?id=com.thumoapp.users&pcampaignid=web_share',
 };
 
 // ---------------------------------------------------------------------------

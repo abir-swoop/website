@@ -2,6 +2,40 @@ import { useState } from 'react';
 import { useInView } from '../../hooks/useInView';
 import type { PageContent } from '../../config/contentConfig';
 
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzbYHsmXQD71ACvZLjjd4vsBPzR96LtjSpWDQxdxNiDDo37Y3aqroolc1LWdHDLvcqr/exec';
+
+function submitToSheet(data: { name: string; phone: string; userType: string }): Promise<void> {
+  return new Promise((resolve) => {
+    const iframe = document.createElement('iframe');
+    iframe.name = 'waitlist-iframe';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = SHEET_URL;
+    form.target = 'waitlist-iframe';
+
+    for (const [key, value] of Object.entries(data)) {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = value;
+      form.appendChild(input);
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+
+    // Clean up after submission
+    setTimeout(() => {
+      document.body.removeChild(form);
+      document.body.removeChild(iframe);
+      resolve();
+    }, 2000);
+  });
+}
+
 type Props = Pick<PageContent, 'downloadHeadline' | 'downloadSubheadline' | 'downloadCtaVariant' | 'appStoreUrl' | 'playStoreUrl'> & { mockupImage: string };
 
 export default function Download({ downloadHeadline, downloadSubheadline, downloadCtaVariant, appStoreUrl, playStoreUrl, mockupImage }: Props) {
@@ -10,9 +44,11 @@ export default function Download({ downloadHeadline, downloadSubheadline, downlo
   const [phone, setPhone] = useState('');
   const [userType, setUserType] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
   return (
-    <section className="bg-brand-dark w-full px-6 md:px-16 py-4">
+    <section id="contact-us" className="bg-brand-dark w-full px-6 md:px-16 py-4">
       <div
         ref={ref as React.RefObject<HTMLDivElement>}
         className="relative bottom-[80px] max-w-[1280px] mx-auto rounded-[32px] overflow-hidden bg-brand-primary min-h-[420px] flex items-center"
@@ -26,7 +62,7 @@ export default function Download({ downloadHeadline, downloadSubheadline, downlo
         />
 
         {/* Left — text + CTA */}
-        <div className="relative z-10 flex flex-col gap-7 px-10 md:px-16 py-14 max-w-[560px]">
+        <div className="relative z-10 flex flex-col gap-7 px-10 md:px-16 py-14 max-w-[700px]">
           <h2
             className={`text-white font-extrabold text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.1] tracking-tight transition-all duration-700 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           >
@@ -61,43 +97,71 @@ export default function Download({ downloadHeadline, downloadSubheadline, downlo
                 <p className="text-white font-semibold text-lg">You're on the list! We'll be in touch.</p>
               ) : (
                 <form
-                  onSubmit={(e) => { e.preventDefault(); if (name && phone && userType) setSubmitted(true); }}
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    if (!name || !phone || !userType) return;
+                    setSubmitting(true);
+                    setError('');
+                    try {
+                      await submitToSheet({ name, phone: `+234${phone}`, userType });
+                      setSubmitted(true);
+                    } catch {
+                      setError('Something went wrong. Please try again.');
+                    } finally {
+                      setSubmitting(false);
+                    }
+                  }}
                   className="flex flex-col gap-4"
                 >
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex flex-row gap-3">
                     <input
                       type="text"
                       required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Your name"
-                      className="rounded-xl px-4 py-3.5 text-[#4e4c84] font-medium text-base outline-none placeholder:text-[#4e4c84] bg-white/90 backdrop-blur-sm w-[143px] shrink-0"
+                      className="rounded-xl px-4 py-3.5 text-[#4e4c84] font-medium text-base outline-none placeholder:text-[#4e4c84] bg-white/90 backdrop-blur-sm flex-1 min-w-0"
                     />
-                    <input
-                      type="tel"
-                      required
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      placeholder="+234 - Your Phone Number"
-                      className="rounded-xl px-4 py-3.5 text-[#4e4c84] font-medium text-base outline-none placeholder:text-[#4e4c84] bg-white/90 backdrop-blur-sm w-[244px] shrink-0"
-                    />
-                    <select
-                      required
-                      value={userType}
-                      onChange={(e) => setUserType(e.target.value)}
-                      className="rounded-xl px-4 py-3.5 text-[#4e4c84] font-medium text-base outline-none bg-white/90 backdrop-blur-sm w-[143px] shrink-0 appearance-none"
-                    >
-                      <option value="" disabled>User type</option>
-                      <option value="customer">Customer</option>
-                      <option value="merchant">Merchant</option>
-                      <option value="rider">Rider</option>
-                    </select>
+                    <div className="flex items-center bg-white/90 backdrop-blur-sm rounded-xl flex-[1.7] min-w-0">
+                      <span className="pl-4 text-[#4e4c84] font-medium text-base select-none whitespace-nowrap">+234</span>
+                      <input
+                        type="tel"
+                        required
+                        value={phone}
+                        onChange={(e) => {
+                          const digits = e.target.value.replace(/\D/g, '').slice(0, 10);
+                          setPhone(digits);
+                        }}
+                        maxLength={10}
+                        pattern="\d{10}"
+                        placeholder="8012345678"
+                        className="w-full rounded-xl px-2 py-3.5 text-[#4e4c84] font-medium text-base outline-none placeholder:text-[#4e4c84] bg-transparent min-w-0"
+                      />
+                    </div>
+                    <div className="relative flex-1 min-w-0">
+                      <select
+                        required
+                        value={userType}
+                        onChange={(e) => setUserType(e.target.value)}
+                        className="w-full rounded-xl px-4 py-3.5 text-[#4e4c84] font-medium text-base outline-none bg-white/90 backdrop-blur-sm appearance-none pr-9"
+                      >
+                        <option value="" disabled>I am a...</option>
+                        <option value="user">User</option>
+                        <option value="merchant">Merchant</option>
+                        <option value="rider">Rider</option>
+                      </select>
+                      <svg className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#4e4c84]" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
                   </div>
+                  {error && <p className="text-red-300 text-sm">{error}</p>}
                   <button
                     type="submit"
-                    className="bg-[#0b0062] text-white font-semibold text-lg rounded-xl px-3 py-4 hover:bg-[#0d0080] transition-colors tracking-[-0.04em] w-full"
+                    disabled={submitting}
+                    className="bg-[#0b0062] text-white font-semibold text-lg rounded-xl px-3 py-4 hover:bg-[#0d0080] transition-colors tracking-[-0.04em] w-full disabled:opacity-60"
                   >
-                    Join the waitlist
+                    {submitting ? 'Submitting...' : 'Join the waitlist'}
                   </button>
                 </form>
               )}

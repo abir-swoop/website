@@ -30,7 +30,7 @@ export default function Layout({ content, children }: Props) {
         {children}
       </main>
 
-      <Footer />
+      <Footer locale={content.locale} />
     </div>
   );
 }
