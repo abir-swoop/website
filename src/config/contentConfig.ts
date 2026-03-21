@@ -202,7 +202,7 @@ const NG_CONTENT: PageContent = {
   hero: {
     headlineLine1: 'Something big is',
     headlineLine2: 'coming to Lagos!',
-    subPre:      'The every-day app Lagos is waiting for, ',
+    subPre:      'The super app Lagos is waiting for, ',
     subBold:     '',
     subPost:     'starting with food delivery',
     appStoreUrl:  'https://apps.apple.com/us/app/thumo/id6749094829',
