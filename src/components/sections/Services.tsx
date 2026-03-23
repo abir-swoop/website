@@ -17,7 +17,7 @@ export default function Services({ foodCities }: Props) {
   const [ref, inView] = useInView();
 
   return (
-    <section ref={ref as React.RefObject<HTMLDivElement>} className="w-full bg-white pt-[250px] sm:pt-[250px] md:pt-[540px] lg:pt-[600px] pb-0 md:pb-20 px-5" id="services">
+    <section ref={ref as React.RefObject<HTMLDivElement>} className="w-full bg-white pt-[250px] sm:pt-[250px] md:pt-[540px] lg:pt-[600px] pb-0 md:pb-20 px-5 mb-8" id="services">
       <div className="max-w-[1280px] mx-auto flex flex-col gap-10 md:mt-12">
 
         {/* ── Section header ── */}
@@ -73,12 +73,12 @@ export default function Services({ foodCities }: Props) {
         </h3>
 
         {/* ── Row 2: Groceries + Pharmacy ── */}
-        <div className={`grid grid-cols-1 md:grid-cols-2 gap-5 transition-all duration-700 ease-out delay-400 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div className={`grid grid-cols-2 gap-4 sm:gap-5 transition-all duration-700 ease-out delay-400 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
 
           {/* Groceries */}
-          <div className="relative bg-[#2a3143] rounded-[24px] sm:rounded-[32px] overflow-hidden h-[200px] sm:h-[250px]">
-            <div className="absolute left-5 sm:left-[48px] top-6 sm:top-[53px] z-10">
-              <h3 className="font-extrabold text-white text-[28px] sm:text-[36px] md:text-[48px] tracking-[-0.02em] leading-none">
+          <div className="relative bg-[#1e2538] rounded-[16px] sm:rounded-[24px] overflow-hidden h-[150px] sm:h-[240px] md:h-[280px]">
+            <div className="absolute left-4 sm:left-6 top-4 sm:top-6 z-10">
+              <h3 className="font-extrabold text-white text-[20px] sm:text-[28px] md:text-[36px] tracking-[-0.02em] leading-none">
                 Groceries
               </h3>
             </div>
@@ -86,14 +86,14 @@ export default function Services({ foodCities }: Props) {
               src={groceryIllustration}
               alt=""
               aria-hidden="true"
-              className="absolute right-0 bottom-0 h-full w-auto object-contain pointer-events-none"
+              className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[75%] w-auto object-contain pointer-events-none"
             />
           </div>
 
           {/* Pharmacy */}
-          <div className="relative bg-[#2a3143] rounded-[24px] sm:rounded-[32px] overflow-hidden h-[200px] sm:h-[250px]">
-            <div className="absolute left-5 sm:left-[48px] top-6 sm:top-[53px] z-10">
-              <h3 className="font-extrabold text-white text-[28px] sm:text-[36px] md:text-[48px] tracking-[-0.02em] leading-none">
+          <div className="relative bg-[#1e2538] rounded-[16px] sm:rounded-[24px] overflow-hidden h-[150px] sm:h-[240px] md:h-[280px]">
+            <div className="absolute left-4 sm:left-6 top-4 sm:top-6 z-10">
+              <h3 className="font-extrabold text-white text-[20px] sm:text-[28px] md:text-[36px] tracking-[-0.02em] leading-none">
                 Pharmacy
               </h3>
             </div>
@@ -101,10 +101,9 @@ export default function Services({ foodCities }: Props) {
               src={pharmacyIllustration}
               alt=""
               aria-hidden="true"
-              className="absolute right-0 bottom-0 h-full w-auto object-contain pointer-events-none"
+              className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[75%] w-auto object-contain pointer-events-none"
             />
           </div>
-
         </div>
       </div>
     </section>

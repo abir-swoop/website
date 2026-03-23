@@ -114,7 +114,7 @@ export default function HowToOrder({ content }: Props) {
                     <img
                       src={step.screenImage}
                       alt={`Step ${step.number}: ${step.title}`}
-                      className="w-[55%] md:w-[50%] h-auto object-contain py-8"
+                      className="w-[55%] mt-20 md:w-[50%] h-auto object-contain py-8"
                     />
                   </div>
                 </div>

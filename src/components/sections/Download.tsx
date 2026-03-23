@@ -51,14 +51,14 @@ export default function Download({ downloadHeadline, downloadSubheadline, downlo
     <section id="contact-us" className="bg-brand-dark w-full px-4 sm:px-6 md:px-16 py-4">
       <div
         ref={ref as React.RefObject<HTMLDivElement>}
-        className="relative bottom-[80px] max-w-[1280px] mx-auto rounded-[24px] sm:rounded-[32px] overflow-hidden bg-brand-primary min-h-[auto] sm:min-h-[420px] flex items-center"
+        className="relative bottom-[80px] max-w-[1280px] mx-auto rounded-[24px] sm:rounded-[32px] overflow-hidden bg-brand-primary min-h-[auto] sm:min-h-[420px] flex-col md:flex-row items-center"
       >
         {/* Texture overlay */}
         <img
           src="/assets/download-bg-texture.png"
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none mix-blend-overlay"
+          className="absolute inset-0 w-full h-full object-cover opacity-80 pointer-events-none mix-blend-overlay"
         />
 
         {/* Left — text + CTA */}
@@ -174,6 +174,16 @@ export default function Download({ downloadHeadline, downloadSubheadline, downlo
         {/* Right — phone mockup (hidden on mobile) */}
         <div
           className={`hidden md:flex absolute right-0 bottom-[-80px] h-full items-end pointer-events-none transition-all duration-700 ease-out delay-300 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        >
+          <img
+            src={mockupImage}
+            alt="Swoop app on phone"
+            className="h-[110%] w-auto object-contain object-bottom"
+            draggable={false}
+          />
+        </div>
+        <div
+          className={`md:hidden right-0 bottom-[-80px] h-full items-end pointer-events-none transition-all duration-700 ease-out delay-300 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
           <img
             src={mockupImage}

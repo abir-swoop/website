@@ -25,9 +25,9 @@ export default function Cta() {
           </h2>
         </div>
 
-        {/* Right — icons image */}
+        {/* Right — icons image (desktop) */}
         <div
-          className={`transition-all duration-700 ease-out delay-200 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          className={`hidden md:block transition-all duration-700 ease-out delay-200 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
           <img
             src="/assets/icons.png"
@@ -37,6 +37,16 @@ export default function Cta() {
           />
         </div>
 
+      </div>
+
+      {/* Mobile icons — full width, no padding */}
+      <div className="-mt-24 mb-4 block md:hidden">
+        <img
+          src="/assets/icons-mobile.png"
+          alt="Food, groceries, payments and rides icons"
+          className={`w-full mb-12 object-contain transition-all duration-700 ease-out delay-200 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          draggable={false}
+        />
       </div>
     </section>
   );
