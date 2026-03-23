@@ -30,7 +30,7 @@ export default function Hero({ hero, locale = 'NG' }: Props) {
   return (
     <>
       {/* ── Hero: screen-height purple section ── */}
-      <section id="home" className="w-full h-screen min-h-[600px] bg-[#4d36ff] relative overflow-visible" ref={mockupRef as React.RefObject<HTMLElement>}>
+      <section id="home" className="w-full min-h-[600px] bg-[#4d36ff] relative overflow-visible" style={{ height: '100svh' }} ref={mockupRef as React.RefObject<HTMLElement>}>
         {/* Background illustration — clipped to section */}
         <div className="absolute inset-0 overflow-hidden">
           <img
