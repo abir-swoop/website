@@ -1,8 +1,12 @@
 import Layout from '../components/layout/Layout';
-import { CONTENT_MAP } from '../config/contentConfig';
+import { CONTENT_MAP, type Locale } from '../config/contentConfig';
 
-export default function TermsPage() {
-  const content = CONTENT_MAP['NG'];
+interface Props {
+  locale?: Locale;
+}
+
+export default function TermsPage({ locale = 'NG' }: Props) {
+  const content = CONTENT_MAP[locale];
 
   return (
     <Layout content={content}>

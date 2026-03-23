@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { COUNTRIES, type Locale } from '../../config/contentConfig';
+import { localeRoute, homeRoute } from '../../utils/localeRoutes';
 
 // Figma assets
 const swoopWordmark = '/assets/swoop-wordmark-nav.svg';
@@ -42,16 +43,15 @@ export default function Navbar({ locale }: Props) {
 
   function handleCountrySelect(code: Locale) {
     setOpen(false);
-    const country = COUNTRIES.find(c => c.code === code)!;
-    navigate(country.route);
+    navigate(localeRoute(code));
   }
 
-  const homeRoute = locale === 'NG' ? '/' : '/sz';
+  const home = homeRoute(locale);
 
   const handleNavClick = (sectionId: string, offset: number = 0) => (e: React.MouseEvent) => {
     e.preventDefault();
     setMobileOpen(false);
-    navigate(homeRoute);
+    navigate(home);
     // Scroll to section after navigation
     setTimeout(() => {
       const element = document.getElementById(sectionId);
@@ -70,7 +70,7 @@ export default function Navbar({ locale }: Props) {
         <div className="flex items-center gap-3 sm:gap-6 min-w-0">
 
           {/* Logo */}
-          <a href={homeRoute} className="flex items-center shrink-0">
+          <a href={home} className="flex items-center shrink-0">
             <div className="relative h-7 sm:h-8 w-9 sm:w-10">
               <img
                 src={swoopIcon}

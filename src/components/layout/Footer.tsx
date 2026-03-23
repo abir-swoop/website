@@ -1,31 +1,36 @@
 import { useInView } from '../../hooks/useInView';
 import type { Locale } from '../../config/contentConfig';
+import { localeRoute } from '../../utils/localeRoutes';
 
 interface Props {
   locale?: Locale;
 }
 
-const links = {
-  company: [
-    { label: 'Become a merchant', href: '#movement' },
-    { label: 'Become a rider', href: '#movement' }
-  ],
-  helpCenter: [
-    { label: 'FAQ', href: '#faqs' },
-    { label: 'Contact Us', href: '#contact-us' }
-  ],
-  legal: [
-    { label: 'Privacy Policy', href: '/privacy' },
-    { label: 'Terms & Conditions', href: '/terms' }
-  ],
-  download: [
-    { label: 'iOS', href: '#' },
-    { label: 'Android', href: '#' }
-  ],
-};
-
 export default function Footer({ locale = 'NG' }: Props) {
   const [ref, inView] = useInView(0.1);
+
+  const base = localeRoute(locale).replace(/\/$/, ''); // strip trailing slash from '/'
+  const privacyHref = `${base}/privacy`;
+  const termsHref   = `${base}/terms`;
+
+  const links = {
+    company: [
+      { label: 'Become a merchant', href: '#movement' },
+      { label: 'Become a rider', href: '#movement' }
+    ],
+    helpCenter: [
+      { label: 'FAQ', href: '#faqs' },
+      { label: 'Contact Us', href: '#contact-us' }
+    ],
+    legal: [
+      { label: 'Privacy Policy', href: privacyHref },
+      { label: 'Terms & Conditions', href: termsHref }
+    ],
+    download: [
+      { label: 'iOS', href: '#' },
+      { label: 'Android', href: '#' }
+    ],
+  };
 
   // For NG, exclude the download section
   const sections = locale === 'NG'
