@@ -137,6 +137,21 @@ export interface FaqItem {
 }
 
 // ---------------------------------------------------------------------------
+// How to Order section
+// ---------------------------------------------------------------------------
+export interface HowToOrderStep {
+  number: string;
+  title: string;
+  description: string;
+  screenImage: string;
+}
+
+export interface HowToOrderContent {
+  headline: string;
+  steps: HowToOrderStep[];
+}
+
+// ---------------------------------------------------------------------------
 // Full page content shape
 // ---------------------------------------------------------------------------
 export interface PageContent {
@@ -144,6 +159,7 @@ export interface PageContent {
   country: Country;
   strip: StripContent;
   hero: HeroContent;
+  howToOrder: HowToOrderContent;
   /** Bold city names in the Food Delivery card */
   foodCities: string;
   categories: CategoryCard[];
@@ -214,6 +230,30 @@ const NG_CONTENT: PageContent = {
   },
 
   foodCities: 'Lagos, Abuja, and Port Harcourt',
+
+  howToOrder: {
+    headline: 'How to order',
+    steps: [
+      {
+        number: '1',
+        title: 'Browse your favourites',
+        description: 'Explore nearby restaurants, check menus, and find exactly what you\'re craving. See it all before you order.',
+        screenImage: '/assets/how-to-order-screen-browse.png',
+      },
+      {
+        number: '2',
+        title: 'Add to cart & order',
+        description: 'Pick your meals, customise if needed, and checkout in seconds. Fast, simple, no stress.',
+        screenImage: '/assets/how-to-order-screen-cart.png',
+      },
+      {
+        number: '3',
+        title: 'Track it to your doorstep',
+        description: 'Watch your order move in real time—from the kitchen to your location. No guessing, just live updates.',
+        screenImage: '/assets/how-to-order-screen-track.png',
+      },
+    ],
+  },
 
   categories: [
     {
@@ -347,6 +387,30 @@ const SZ_CONTENT: PageContent = {
   },
 
   foodCities: 'Mbabane, Matsapha, Ezulwini, and Manzini',
+
+  howToOrder: {
+    headline: 'How to order',
+    steps: [
+      {
+        number: '1',
+        title: 'Browse your favourites',
+        description: 'Explore nearby restaurants, check menus, and find exactly what you\'re craving. See it all before you order.',
+        screenImage: '/assets/how-to-order-screen-browse.png',
+      },
+      {
+        number: '2',
+        title: 'Add to cart & order',
+        description: 'Pick your meals, customise if needed, and checkout in seconds. Fast, simple, no stress.',
+        screenImage: '/assets/how-to-order-screen-cart.png',
+      },
+      {
+        number: '3',
+        title: 'Track it to your doorstep',
+        description: 'Watch your order move in real time—from the kitchen to your location. No guessing, just live updates.',
+        screenImage: '/assets/how-to-order-screen-track.png',
+      },
+    ],
+  },
 
   categories: [
     {

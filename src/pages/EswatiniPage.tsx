@@ -1,6 +1,7 @@
 import Layout from '../components/layout/Layout';
 import Hero from '../components/sections/Hero';
 import Services from '../components/sections/Services';
+import HowToOrder from '../components/sections/HowToOrder';
 import Partners from '../components/sections/Partners';
 import Movement from '../components/sections/Movement';
 import Cta from '../components/sections/Cta';
@@ -16,6 +17,7 @@ export default function EswatiniPage() {
     <Layout content={content}>
       <Hero hero={content.hero} locale="SZ" />
       <Services foodCities={content.foodCities} />
+      <HowToOrder content={content.howToOrder} />
       <Partners />
       <Movement join={content.join} />
       <Cta />

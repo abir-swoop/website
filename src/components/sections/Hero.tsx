@@ -97,11 +97,11 @@ export default function Hero({ hero, locale = 'NG' }: Props) {
 
       {/* ── Bottom: App Showcase ── */}
       <section className="w-full bg-white" id="app-showcase" ref={mockupRef as React.RefObject<HTMLElement>}>
-        <div className="max-w-[280px] sm:max-w-[340px] mx-auto flex items-center justify-center py-10 sm:py-16 px-6">
+        <div className="max-w-[80vw] md:max-w-[480px] mx-auto flex items-center justify-center py-10 sm:py-16 px-6">
           <img
             src={hero.mockupImage}
             alt="Swoop app mockup"
-            className={`w-full object-contain select-none transition-all duration-1000 ease-out ${mockupInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+            className={`w-full object-contain select-none mt-[-25vh] md:mt-[-45vh] transition-all duration-1000 ease-out ${mockupInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
             draggable={false}
           />
         </div>

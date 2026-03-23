@@ -1,6 +1,7 @@
 import Layout from '../components/layout/Layout';
 import Hero from '../components/sections/Hero';
 import Services from '../components/sections/Services';
+import HowToOrder from '../components/sections/HowToOrder';
 import Movement from '../components/sections/Movement';
 import Cta from '../components/sections/Cta';
 import Faqs from '../components/sections/Faqs';
@@ -15,6 +16,7 @@ export default function NigeriaPage() {
     <Layout content={content}>
       <Hero hero={content.hero} locale="NG" />
       <Services foodCities={content.foodCities} />
+      <HowToOrder content={content.howToOrder} />
       <Movement join={content.join} />
       <Cta />
       <Faqs faqs={content.faqs} />
