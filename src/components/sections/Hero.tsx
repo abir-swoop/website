@@ -29,18 +29,20 @@ export default function Hero({ hero, locale = 'NG' }: Props) {
 
   return (
     <>
-      {/* ── Top: text + CTAs ── */}
-      <section id="home" className="w-full h-[70vh] sm:h-[80vh] bg-[#4d36ff] relative overflow-hidden" style={{ minHeight: '500px' }}>
-        {/* Illustration pinned to bottom, full width, behind nothing — it IS the bg decoration */}
-        <img
-          src={heroImage}
-          alt=""
-          aria-hidden="true"
-          className={`absolute bottom-0 left-0 w-full h-full pointer-events-none select-none object-cover object-bottom transition-all duration-1000 ease-out delay-500 ${loaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}
-        />
+      {/* ── Hero: screen-height purple section ── */}
+      <section id="home" className="w-full h-screen min-h-[600px] bg-[#4d36ff] relative overflow-visible" ref={mockupRef as React.RefObject<HTMLElement>}>
+        {/* Background illustration — clipped to section */}
+        <div className="absolute inset-0 overflow-hidden">
+          <img
+            src={heroImage}
+            alt=""
+            aria-hidden="true"
+            className={`absolute bottom-0 left-0 w-full h-full pointer-events-none select-none object-cover object-bottom transition-all duration-1000 ease-out delay-500 ${loaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}
+          />
+        </div>
 
-        {/* Content sits above the illustration via z-10 */}
-        <div className="relative z-10 max-w-[1280px] mx-auto flex flex-col items-center gap-8 text-center pt-[100px] pb-[240px] px-5">
+        {/* Text + CTAs — upper portion */}
+        <div className="relative z-10 max-w-[1280px] mx-auto flex flex-col items-center gap-8 text-center pt-[100px] px-5">
 
           {/* Headline */}
           <h1
@@ -92,18 +94,16 @@ export default function Hero({ hero, locale = 'NG' }: Props) {
             </div>
           )}
 
-        </div>
-      </section>
+          {/* Mockup — flows just below CTA, overflows section bottom into next section */}
+          <div id="app-showcase" className={`w-[280px] md:w-[420px] mt-4 transition-all duration-1000 ease-out delay-[600ms] ${mockupInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+            <img
+              src={hero.mockupImage}
+              alt="Swoop app mockup"
+              className="w-full object-contain select-none"
+              draggable={false}
+            />
+          </div>
 
-      {/* ── Bottom: App Showcase ── */}
-      <section className="w-full bg-white" id="app-showcase" ref={mockupRef as React.RefObject<HTMLElement>}>
-        <div className="max-w-[80vw] md:max-w-[480px] mx-auto flex items-center justify-center py-10 sm:py-16 px-6">
-          <img
-            src={hero.mockupImage}
-            alt="Swoop app mockup"
-            className={`w-full object-contain select-none mt-[-25vh] md:mt-[-45vh] transition-all duration-1000 ease-out ${mockupInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
-            draggable={false}
-          />
         </div>
       </section>
     </>
