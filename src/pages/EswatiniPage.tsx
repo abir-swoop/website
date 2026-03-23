@@ -17,7 +17,7 @@ export default function EswatiniPage() {
     <Layout content={content}>
       <Hero hero={content.hero} locale="SZ" />
       <Services foodCities={content.foodCities} />
-      <HowToOrder content={content.howToOrder} />
+      <HowToOrder content={content.howToOrder} locale="SZ" />
       <Partners />
       <Movement join={content.join} />
       <Cta />

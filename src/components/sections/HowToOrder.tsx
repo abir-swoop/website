@@ -22,6 +22,7 @@ export interface HowToOrderContent {
 
 interface Props {
   content: HowToOrderContent;
+  locale?: 'NG' | 'SZ';
 }
 
 /** Zigzag SVG border — points up or down */
@@ -46,7 +47,7 @@ function ZigzagBorder({ flip = false, bgColor = '' }: { flip?: boolean, bgColor?
   );
 }
 
-export default function HowToOrder({ content }: Props) {
+export default function HowToOrder({ content, locale = 'NG' }: Props) {
   const [ref, inView] = useInView();
 
   return (
@@ -125,7 +126,7 @@ export default function HowToOrder({ content }: Props) {
       </section>
 
       {/* Bottom zigzag (cuts into section below) */}
-      <ZigzagBorder flip bgColor="bg-brand-primary" />
+      <ZigzagBorder flip bgColor={locale === 'SZ' ? 'bg-[#f3f2ff]' : 'bg-brand-primary'} />
     </>
   );
 }
