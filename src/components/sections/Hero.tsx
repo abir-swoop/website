@@ -42,7 +42,7 @@ export default function Hero({ hero, locale = 'NG' }: Props) {
         </div>
 
         {/* Text + CTAs — upper portion */}
-        <div className="relative z-10 max-w-[1280px] mx-auto flex flex-col items-center gap-8 text-center pt-[100px] px-5">
+        <div className="relative z-10 max-w-[1280px] mx-auto flex flex-col items-center gap-4 md:gap-8 text-center pt-[70px] md:pt-[100px] px-5">
 
           {/* Headline */}
           <h1
@@ -55,7 +55,7 @@ export default function Hero({ hero, locale = 'NG' }: Props) {
           </h1>
 
           {/* Subheadline */}
-          <p className={`text-white/80 text-[20px] leading-relaxed max-w-[734px] transition-all duration-700 ease-out delay-200 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+          <p className={`text-white/80 text-[16px] md:text-[20px] leading-relaxed max-w-[734px] transition-all duration-700 ease-out delay-200 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
             {hero.subPre}
             <strong className="font-bold text-white">{hero.subBold}</strong>
             {hero.subPost}
@@ -95,7 +95,7 @@ export default function Hero({ hero, locale = 'NG' }: Props) {
           )}
 
           {/* Mockup — flows just below CTA, overflows section bottom into next section */}
-          <div id="app-showcase" className={`w-[280px] md:w-[420px] mt-4 transition-all duration-1000 ease-out delay-[600ms] ${mockupInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+          <div id="app-showcase" className={`w-[220px] sm:w-[280px] md:w-[420px] mt-2 md:mt-4 transition-all duration-1000 ease-out delay-[600ms] ${mockupInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
             <img
               src={hero.mockupImage}
               alt="Swoop app mockup"
