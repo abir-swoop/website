@@ -17,7 +17,7 @@ export default function Services({ foodCities }: Props) {
   const [ref, inView] = useInView();
 
   return (
-    <section ref={ref as React.RefObject<HTMLDivElement>} className="w-full bg-white pt-[250px] sm:pt-[250px] md:pt-[540px] lg:pt-[600px] pb-0 md:pb-20 px-5 mb-8" id="services">
+    <section ref={ref as React.RefObject<HTMLDivElement>} className="w-full bg-white pt-12 md:pt-20 pb-0 md:pb-20 px-5 mb-8" id="services">
       <div className="max-w-[1280px] mx-auto flex flex-col gap-10 md:mt-12">
 
         {/* ── Section header ── */}

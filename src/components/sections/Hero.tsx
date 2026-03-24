@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { useInView } from '../../hooks/useInView';
 import type { HeroContent } from '../../config/contentConfig';
 
@@ -16,21 +16,58 @@ interface Props {
  * Layout:
  *   [purple bg] headline + subtext + 2 download CTAs   (centred)
  *   [white bg]  App Showcase placeholder               (phone mockup added later)
+ *
+ * The mockup intentionally overflows the 100svh hero into the next section.
+ * We measure the actual overflow and set a matching margin-bottom so the
+ * document flow accounts for it — no magic padding numbers needed downstream.
  */
 export default function Hero({ hero, locale = 'NG' }: Props) {
   const heroImage = locale === 'SZ' ? '/assets/bg-sz.png' : '/assets/Lagos-Hero.png';
   const [loaded, setLoaded] = useState(false);
   const [mockupRef, mockupInView] = useInView(0.1);
+  const sectionRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [overflowMb, setOverflowMb] = useState(0);
 
   useEffect(() => {
     const t = setTimeout(() => setLoaded(true), 100);
     return () => clearTimeout(t);
   }, []);
 
+  const measureOverflow = useCallback(() => {
+    const section = sectionRef.current;
+    const content = contentRef.current;
+    if (!section || !content) return;
+    const sectionBottom = section.getBoundingClientRect().bottom;
+    const contentBottom = content.getBoundingClientRect().bottom;
+    const overflow = Math.max(0, contentBottom - sectionBottom);
+    setOverflowMb(overflow);
+  }, []);
+
+  useEffect(() => {
+    measureOverflow();
+    window.addEventListener('resize', measureOverflow);
+    return () => window.removeEventListener('resize', measureOverflow);
+  }, [measureOverflow]);
+
+  // Re-measure after images load
+  const handleMockupLoad = useCallback(() => {
+    measureOverflow();
+  }, [measureOverflow]);
+
   return (
     <>
       {/* ── Hero: screen-height purple section ── */}
-      <section id="home" className="w-full min-h-[600px] bg-[#4d36ff] relative overflow-visible" style={{ height: '100svh' }} ref={mockupRef as React.RefObject<HTMLElement>}>
+      <section
+        id="home"
+        className="w-full min-h-[600px] bg-[#4d36ff] relative overflow-visible"
+        style={{ height: '100svh', marginBottom: overflowMb }}
+        ref={(el) => {
+          sectionRef.current = el;
+          // Also assign to mockupRef for inView detection
+          (mockupRef as React.RefObject<HTMLElement | null>).current = el;
+        }}
+      >
         {/* Background illustration — clipped to section */}
         <div className="absolute inset-0 overflow-hidden">
           <img
@@ -42,7 +79,7 @@ export default function Hero({ hero, locale = 'NG' }: Props) {
         </div>
 
         {/* Text + CTAs — upper portion */}
-        <div className="relative z-10 max-w-[1280px] mx-auto flex flex-col items-center gap-4 md:gap-8 text-center pt-[70px] md:pt-[100px] px-5">
+        <div ref={contentRef} className="relative z-10 max-w-[1280px] mx-auto flex flex-col items-center gap-4 md:gap-8 text-center pt-[70px] md:pt-[100px] px-5">
 
           {/* Headline */}
           <h1
@@ -101,6 +138,7 @@ export default function Hero({ hero, locale = 'NG' }: Props) {
               alt="Swoop app mockup"
               className="w-full object-contain select-none"
               draggable={false}
+              onLoad={handleMockupLoad}
             />
           </div>
 
