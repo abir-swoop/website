@@ -14,7 +14,6 @@ export default function TermsPage({ locale = 'NG' }: Props) {
     ? 'Thumo Delivery Limited, a company incorporated in Nigeria with its registered office at 2 Birrell Avenue, Yaba, Lagos, Nigeria'
     : 'Thumo (Pty) Ltd, a company duly incorporated and trading in Eswatini with its registered office at Lot 121 Dzeliwe Street, Mbabane, Hhohho, Eswatini';
   const getPhoneType = () => locale === 'NG' ? 'Nigerian' : 'Eswatini';
-  const getCurrency = () => locale === 'NG' ? '₦' : 'E';
   const getCurrencyName = () => locale === 'NG' ? 'Nigerian Naira (₦)' : 'Eswatini Lilangeni (SZL)';
   const getPaymentMethods = () => locale === 'NG'
     ? 'Bank transfer (Nigeria), Debit and credit card payments (Visa, Mastercard, Verve), Swoop Wallet'
