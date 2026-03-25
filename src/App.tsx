@@ -15,7 +15,7 @@ export default function App() {
         <Route path="/privacy"    element={<PrivacyPage locale="SZ" />} />
         <Route path="/terms"      element={<TermsPage  locale="SZ" />} />
         <Route path="/ng/privacy" element={<PrivacyPage locale="NG" />} />
-        {/* <Route path="/ng/terms"   element={<TermsPage  locale="NG" />} /> */}
+        <Route path="/ng/terms"   element={<TermsPage  locale="NG" />} />
       </Routes>
     );
   }
@@ -28,7 +28,7 @@ export default function App() {
       <Route path="/privacy"    element={<PrivacyPage locale="NG" />} />
       <Route path="/terms"      element={<TermsPage  locale="NG" />} />
       <Route path="/sz/privacy" element={<PrivacyPage locale="SZ" />} />
-      {/* <Route path="/sz/terms"   element={<TermsPage  locale="SZ" />} /> */}
+      <Route path="/sz/terms"   element={<TermsPage  locale="SZ" />} />
     </Routes>
   );
 }
