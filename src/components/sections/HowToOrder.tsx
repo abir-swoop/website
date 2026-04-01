@@ -64,7 +64,7 @@ export default function HowToOrder({ content, locale = 'NG' }: Props) {
 
           {/* Headline */}
           <h2
-            className={`font-extrabold text-white text-center tracking-[-0.06em] leading-none transition-all duration-700 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            className={`font-extrabold text-white text-center leading-none transition-all duration-700 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
             style={{ fontSize: 'clamp(2rem, 5vw, 4.5rem)' }}
           >
             {content.headline}
@@ -87,7 +87,7 @@ export default function HowToOrder({ content, locale = 'NG' }: Props) {
                     {/* Number badge */}
                     <div className="bg-white/10 rounded-2xl md:rounded-[32px] w-16 h-16 md:w-[120px] md:h-[120px] flex items-center justify-center shrink-0">
                       <span
-                        className="font-extrabold text-[#cce7fe] leading-none tracking-[-0.06em]"
+                        className="font-extrabold text-[#cce7fe] leading-none"
                         style={{ fontSize: 'clamp(2rem, 4vw, 4rem)' }}
                       >
                         {step.number}
@@ -97,14 +97,19 @@ export default function HowToOrder({ content, locale = 'NG' }: Props) {
                     {/* Copy */}
                     <div className="flex flex-col gap-1">
                       <h3
-                        className="font-extrabold text-white tracking-[-0.04em] leading-tight"
-                        style={{ fontSize: 'clamp(1.5rem, 3vw, 2.5rem)' }}
+                        className="font-medium text-white leading-snug"
+                        style={{ fontSize: 'clamp(1rem, 1.5vw, 2.5rem)' }}
                       >
-                        {step.title}
+                        {step.title.split('\n').map((line, index) => (
+                          <span key={index}>
+                            {line}
+                            <br />
+                          </span>
+                        ))}
                       </h3>
-                      <p className="text-[#c9c6de] text-base md:text-xl leading-relaxed mt-1">
+                      {/* <p className="text-[#c9c6de] text-base md:text-xl leading-relaxed mt-1">
                         {step.description}
-                      </p>
+                      </p> */}
                     </div>
                   </div>
 
@@ -115,7 +120,7 @@ export default function HowToOrder({ content, locale = 'NG' }: Props) {
                     <img
                       src={step.screenImage}
                       alt={`Step ${step.number}: ${step.title}`}
-                      className="w-[55%] mt-20 md:w-[50%] h-auto object-contain py-8"
+                      className="w-full h-full object-contain translate-y-[80px]"
                     />
                   </div>
                 </div>
@@ -126,7 +131,7 @@ export default function HowToOrder({ content, locale = 'NG' }: Props) {
       </section>
 
       {/* Bottom zigzag (cuts into section below) */}
-      <ZigzagBorder flip bgColor={locale === 'SZ' ? 'bg-[#f3f2ff]' : 'bg-brand-primary'} />
+      <ZigzagBorder flip bgColor={locale === 'SZ' ? 'bg-[#f3f2ff]' : 'bg-white'} />
     </>
   );
 }

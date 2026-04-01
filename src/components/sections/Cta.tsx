@@ -21,8 +21,11 @@ export default function Cta() {
             draggable={false}
           />
           <h2 className="text-white font-extrabold text-[clamp(2.5rem,5vw,4rem)] leading-[1.1] tracking-tight max-w-[520px]">
-            Food delivery is<br />just the start ...
+            Food is just the<br />beginning.
           </h2>
+          <p className="text-white/80 text-[18px] leading-relaxed">
+            Groceries, pharmacy, and more, coming soon to Swoop.
+          </p>
         </div>
 
         {/* Right — icons image (desktop) */}

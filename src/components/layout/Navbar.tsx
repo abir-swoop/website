@@ -30,7 +30,8 @@ export default function Navbar({ locale }: Props) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const dropRef = useRef<HTMLDivElement>(null);
 
-  // Close dropdown when clicking outside
+  const [navTop, setNavTop] = useState(56);
+
   useEffect(() => {
     function handler(e: MouseEvent) {
       if (dropRef.current && !dropRef.current.contains(e.target as Node)) {
@@ -39,6 +40,15 @@ export default function Navbar({ locale }: Props) {
     }
     document.addEventListener('mousedown', handler);
     return () => document.removeEventListener('mousedown', handler);
+  }, []);
+
+  useEffect(() => {
+    function onScroll() {
+      const top = Math.max(8, 56 - window.scrollY);
+      setNavTop(top);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   function handleCountrySelect(code: Locale) {
@@ -63,8 +73,9 @@ export default function Navbar({ locale }: Props) {
   };
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-[#4d36ff]">
-      <div className="max-w-[1280px] mx-auto flex items-center justify-between px-4 sm:px-10 py-3 sm:py-4 gap-3 sm:gap-6">
+    <nav className="fixed z-50 w-full px-4 sm:px-6 pointer-events-none" style={{ top: navTop }}>
+      <div className="max-w-[1280px] mx-auto pointer-events-auto">
+      <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 gap-3 sm:gap-6 rounded-2xl bg-[#4d36ff]/75 backdrop-blur-md shadow-lg border border-white/10">
 
         {/* ── Left: Logo + Country selector ── */}
         <div className="flex items-center gap-3 sm:gap-6 min-w-0">
@@ -167,29 +178,17 @@ export default function Navbar({ locale }: Props) {
         <div className="flex items-center gap-3">
           {/* Desktop CTA */}
           <div className="hidden md:block">
-            {locale === 'NG' ? (
-              <a
-                href="#contact-us"
-                onClick={handleNavClick('contact-us', 200)}
-                className="bg-[#0b0062] hover:bg-[#0d0078] transition-colors rounded-xl px-5 py-3 sm:py-4 shrink-0"
-              >
-                <span className="font-semibold text-[16px] sm:text-[18px] text-white tracking-[-0.04em] leading-none whitespace-nowrap">
-                  Join the waitlist
-                </span>
-              </a>
-            ) : (
-              <a
-                href="#contact-us"
-                onClick={handleNavClick('contact-us', 200)}
-                className="flex items-center gap-1.5 bg-[#0b0062] hover:bg-[#0d0078] transition-colors rounded-xl px-3 py-3 sm:py-4 shrink-0"
-              >
-                <img src={appleIcon} alt="Apple" className="size-4 object-contain" />
-                <img src={googleIcon} alt="Google Play" className="size-4 object-contain" />
-                <span className="font-semibold text-[16px] sm:text-[18px] text-white tracking-[-0.04em] leading-none whitespace-nowrap">
-                  Download the App
-                </span>
-              </a>
-            )}
+            <a
+              href="#contact-us"
+              onClick={handleNavClick('contact-us', 200)}
+              className="flex items-center gap-1.5 bg-[#0b0062] hover:bg-[#0d0078] transition-colors rounded-xl px-3 py-3 sm:py-4 shrink-0"
+            >
+              <span className="font-semibold text-[16px] sm:text-[18px] text-white tracking-[-0.04em] leading-none whitespace-nowrap">
+                Download Swoop
+              </span>
+              <img src={appleIcon} alt="Apple" className="size-4 object-contain" />
+              <img src={googleIcon} alt="Google Play" className="size-4 object-contain" />
+            </a>
           </div>
 
           {/* Mobile hamburger */}
@@ -206,7 +205,7 @@ export default function Navbar({ locale }: Props) {
 
       {/* ── Mobile menu ── */}
       {mobileOpen && (
-        <div className="md:hidden bg-[#4d36ff] border-t border-white/10 px-4 pb-4">
+        <div className="md:hidden bg-[#4d36ff]/80 backdrop-blur-md border-t border-white/10 px-4 pb-4 rounded-b-2xl">
           <div className="flex flex-col gap-1">
             <a
               href="#home"
@@ -257,6 +256,7 @@ export default function Navbar({ locale }: Props) {
           </div>
         </div>
       )}
+      </div>
     </nav>
   );
 }

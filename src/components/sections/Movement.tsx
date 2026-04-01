@@ -9,21 +9,13 @@
 
 import type { JoinContent } from '../../config/contentConfig';
 import { useInView } from '../../hooks/useInView';
+import { CheckIcon } from 'lucide-react';
 
-const appleIcon      = '/assets/apple-icon-hero.svg';
+const appleIcon = '/assets/apple-icon-hero.svg';
 const googlePlayIcon = '/assets/google-play-icon.svg';
 
 interface Props {
   join: JoinContent;
-}
-
-function CheckIcon() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-      <circle cx="11" cy="11" r="11" fill="#009A49" />
-      <path d="M6 11.5l3.5 3.5 6.5-7" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
 }
 
 function AppStoreButtons({ appStoreUrl, playStoreUrl }: { appStoreUrl?: string; playStoreUrl?: string }) {
@@ -55,6 +47,8 @@ function ContactButton({ label, url }: { label: string; url: string }) {
   return (
     <a
       href={url}
+      target="_blank"
+      rel="noopener noreferrer"
       className="self-start inline-flex items-center gap-2 border border-[#d0cce8] rounded-xl px-6 py-2.5 bg-[#E7E0EC] hover:bg-gray-50 transition-colors font-semibold text-[15px] text-[#0b0062] tracking-[-0.03em]"
     >
       {label}
@@ -63,15 +57,14 @@ function ContactButton({ label, url }: { label: string; url: string }) {
 }
 
 export default function Movement({ join }: Props) {
-  const { headline, subheadline, merchant, rider, ctaVariant, contactLabel, contactUrl, appStoreUrl, playStoreUrl } = join;
+  const { headline, subheadline, merchant, rider, ctaVariant, appStoreUrl, playStoreUrl } = join;
   const [ref, inView] = useInView();
 
   return (
-    <section id="movement" ref={ref as React.RefObject<HTMLDivElement>} className="w-full bg-brand-primary py-20 px-5">
+    <section id="movement" ref={ref as React.RefObject<HTMLDivElement>} className="w-full bg-brand-primary py-20 px-12">
       <div className="max-w-[1280px] mx-auto flex flex-col gap-12">
-
         {/* Heading */}
-        <div className={`text-center transition-all duration-700 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        {/* <div className={`text-center transition-all duration-700 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <h2
             className="font-extrabold text-white leading-tight tracking-[-0.03em]"
             style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}
@@ -81,15 +74,18 @@ export default function Movement({ join }: Props) {
           <p className="mt-3 text-white/80 text-lg max-w-xl mx-auto">
             {subheadline}
           </p>
-        </div>
+        </div> */}
 
         {/* Card 1 — Merchant (image left, text right) */}
         <div className={`rounded-2xl overflow-hidden bg-white flex flex-col md:flex-row transition-all duration-700 ease-out delay-200 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {/* Illustration */}
           <div className="md:w-[40%] bg-[#e8e4ff] flex items-end justify-center shrink-0 overflow-hidden" style={{ minHeight: 300 }}>
-            <img
-              src="/assets/Merchant.png"
-              alt="Chef preparing food"
+            <video
+              src="/assets/store-vid.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
               className="w-full h-full object-cover object-top"
             />
           </div>
@@ -99,23 +95,23 @@ export default function Movement({ join }: Props) {
               <h3 className="font-extrabold text-[#07003b] text-2xl md:text-3xl tracking-[-0.03em]">
                 {merchant.title}
               </h3>
-              <p className="mt-1 text-[#4a4a6a] text-base">{merchant.subtitle}</p>
+              <p className="mt-1 text-[#4a4a6a] text-base sm:text-lg md:text-xl leading-snug">{merchant.subtitle}</p>
             </div>
 
             {ctaVariant === 'app-stores' ? (
               <AppStoreButtons appStoreUrl={appStoreUrl} playStoreUrl={playStoreUrl} />
             ) : (
-              <ContactButton label={contactLabel ?? 'Contact Us'} url={contactUrl ?? '#'} />
+              <ContactButton label="Apply as a Vendor" url="https://forms.gle/44zja88B3C7LFYDGA" />
             )}
 
             {/* Divider */}
             <hr className="border-[#e0ddf5] w-12" />
 
             {/* Bullets */}
-            <ul className="flex flex-col gap-3">
+            <ul className="grid grid-cols-2 gap-3">
               {merchant.bullets.map((b) => (
                 <li key={b} className="flex items-center gap-3 text-[#07003b] font-medium text-base">
-                  <CheckIcon />
+                  <CheckIcon className="w-6 h-6 shrink-0 bg-brand-primary text-white rounded-full p-1" />
                   {b}
                 </li>
               ))}
@@ -131,23 +127,23 @@ export default function Movement({ join }: Props) {
               <h3 className="font-extrabold text-[#07003b] text-2xl md:text-3xl tracking-[-0.03em]">
                 {rider.title}
               </h3>
-              <p className="mt-1 text-[#4a4a6a] text-base">{rider.subtitle}</p>
+              <p className="mt-1 text-[#4a4a6a] text-base sm:text-lg md:text-xl leading-snug">{rider.subtitle}</p>
             </div>
 
             {ctaVariant === 'app-stores' ? (
               <AppStoreButtons appStoreUrl={appStoreUrl} playStoreUrl={playStoreUrl} />
             ) : (
-              <ContactButton label={contactLabel ?? 'Contact Us'} url={contactUrl ?? '#'} />
+              <ContactButton label="Apply as a Rider" url="https://forms.gle/44zja88B3C7LFYDGA" />
             )}
 
             {/* Divider */}
             <hr className="border-[#e0ddf5] w-12" />
 
             {/* Bullets */}
-            <ul className="flex flex-col gap-3">
+            <ul className="grid grid-cols-2 gap-3">
               {rider.bullets.map((b) => (
                 <li key={b} className="flex items-center gap-3 text-[#07003b] font-medium text-base">
-                  <CheckIcon />
+                  <CheckIcon className="w-6 h-6 shrink-0 bg-brand-primary text-white rounded-full p-1" />
                   {b}
                 </li>
               ))}
@@ -155,10 +151,13 @@ export default function Movement({ join }: Props) {
           </div>
           {/* Illustration */}
           <div className="md:w-[40%] bg-[#e8e4ff] relative shrink-0 overflow-hidden" style={{ minHeight: 300 }}>
-            <img
-              src="/assets/Rider.png"
-              alt="Rider on scooter"
-              className="bottom-0 right-0 h-full w-full object-contain object-right"
+            <video
+              src="/assets/rider-vid.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover object-center"
             />
           </div>
         </div>

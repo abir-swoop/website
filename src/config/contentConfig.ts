@@ -19,8 +19,8 @@ export interface Country {
 }
 
 export const COUNTRIES: Country[] = [
-  { code: 'NG', name: 'Nigeria',   flag: '🇳🇬', route: '/'   },
-  { code: 'SZ', name: 'Eswatini',  flag: '🇸🇿', route: '/sz' },
+  { code: 'NG', name: 'Nigeria', flag: '🇳🇬', route: '/' },
+  { code: 'SZ', name: 'Eswatini', flag: '🇸🇿', route: '/sz' },
 ];
 
 // ---------------------------------------------------------------------------
@@ -137,6 +137,49 @@ export interface FaqItem {
 }
 
 // ---------------------------------------------------------------------------
+// Services section
+// ---------------------------------------------------------------------------
+export interface ServicesContent {
+  headline: string;
+  headline2: string;
+  subheadline: string;
+  foodDeliveryTitle: string;
+  foodDeliveryDescription: string;
+  features: string[];
+  groceriesTitle: string;
+  pharmacyTitle: string;
+}
+
+// ---------------------------------------------------------------------------
+// Why Swoop section (3-column benefit cards)
+// ---------------------------------------------------------------------------
+export interface WhySwoopContent {
+  pricingBoldText: string;
+  pricingBodyText: string;
+  trackingBoldText: string;
+  trackingBodyText: string;
+  supportBoldText: string;
+  supportBodyText: string;
+  currency: string;
+  subtotal: string;
+  deliveryFee: string;
+  serviceFee: string;
+  promoDiscount: string;
+  total: string;
+}
+
+// ---------------------------------------------------------------------------
+// Coverage Map section (NG only)
+// ---------------------------------------------------------------------------
+export interface CoverageMapContent {
+  headlinePre: string;
+  headlineAccent: string;
+  headlineLine2: string;
+  body: string;
+  pinLabel: string;
+}
+
+// ---------------------------------------------------------------------------
 // How to Order section
 // ---------------------------------------------------------------------------
 export interface HowToOrderStep {
@@ -159,6 +202,10 @@ export interface PageContent {
   country: Country;
   strip: StripContent;
   hero: HeroContent;
+  services: ServicesContent;
+  whySwoop: WhySwoopContent;
+  /** NG only */
+  coverageMap?: CoverageMapContent;
   howToOrder: HowToOrderContent;
   /** Bold city names in the Food Delivery card */
   foodCities: string;
@@ -183,23 +230,23 @@ export interface PageContent {
 const SHARED_FAQS: FaqItem[] = [
   {
     question: 'What is Swoop?',
-    answer:   'Swoop is a super-app built for African cities — starting with food delivery. Order from your favourite restaurants and get it delivered fast. Stay tuned for more services.',
+    answer: 'Swoop is a super-app built for African cities — starting with food delivery. Order from your favourite restaurants and get it delivered fast. Stay tuned for more services.',
   },
   {
     question: 'Where is Swoop available?',
-    answer:   "We're live across four regions in Eswatini — Mbabane, Ezulwini, Matsapha, and Manzini. Lagos, Nigeria to come very soon.",
+    answer: "We're live across four regions in Eswatini — Mbabane, Ezulwini, Matsapha, and Manzini. Lagos, Nigeria to come very soon.",
   },
   {
     question: 'How do I order?',
-    answer:   'Download the app and sign up with your phone number, choose your location, pick a restaurant, and check out. You can pay by card, or cash if in Eswatini. Your rider is tracked in real time.',
+    answer: 'Download the app and sign up with your phone number, choose your location, pick a restaurant, and check out. You can pay by card, or cash if in Eswatini. Your rider is tracked in real time.',
   },
   {
     question: "I'm in Lagos. When do you launch?",
-    answer:   "We're launching in Lagos very soon. Join the waitlist to be first in line and get early access deals when we go live.",
+    answer: "We're launching in Lagos very soon. Join the waitlist to be first in line and get early access deals when we go live.",
   },
   {
     question: 'How do I partner with Swoop?',
-    answer:   "Whether you're a restaurant owner or want to ride with us, you can download the app in Eswatini or use the Contact Us button in Nigeria. We're actively open to self-onboarding across Eswatini and assisting riders and merchants to come online with us for our Lagos launch.",
+    answer: "Whether you're a restaurant owner or want to ride with us, you can download the app in Eswatini or use the Contact Us button in Nigeria. We're actively open to self-onboarding across Eswatini and assisting riders and merchants to come online with us for our Lagos launch.",
   },
 ];
 
@@ -212,43 +259,77 @@ const NG_CONTENT: PageContent = {
 
   strip: {
     variant: 'launch',
-    launchText: '🎉 Launching soon in Lagos, Nigeria',
+    launchText: '🎉 Swoop is now live in Yaba! Download now',
   },
 
   hero: {
-    headlineLine1: 'Something big is',
-    headlineLine2: 'coming to Lagos!',
-    subPre:      'The super app Lagos is waiting for, ',
-    subBold:     '',
-    subPost:     'starting with food delivery',
-    appStoreUrl:  'https://apps.apple.com/us/app/thumo/id6749094829',
+    headlineLine1: 'Now you\'re eating.',
+    headlineLine2: '',
+    subPre: 'Food delivery in Yaba. Fast, transparent, and built for how you eat.',
+    subBold: '',
+    subPost: '',
+    appStoreUrl: 'https://apps.apple.com/us/app/thumo/id6749094829',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.thumoapp.users&pcampaignid=web_share',
-    mockupImage:     '/assets/NG-step-1.png',
+    mockupImage: '/assets/NG-step-1.png',
     handMockupImage: '/assets/hand-mockup-ng.png',
-    ctaVariant:      'waitlist',
-    waitlistUrl:     '#contact-us',
+    ctaVariant: 'app-stores',
+    waitlistUrl: '#contact-us',
+  },
+
+  services: {
+    headline: 'Everything you want, ',
+    headline2: 'Swoop it up.',
+    subheadline: 'From breakfast to late night cravings, Swoop brings the best food in Yaba straight to you.',
+    foodDeliveryTitle: 'Food Delivery',
+    foodDeliveryDescription: 'Your favorite restaurants, delivered fast',
+    features: ['Fast delivery', 'Honest pricing', 'Vendors you\'ll actually recognise'],
+    groceriesTitle: 'Groceries',
+    pharmacyTitle: 'Pharmacy',
+  },
+
+  whySwoop: {
+    pricingBoldText: 'No hidden fees.',
+    pricingBodyText: 'Transparent fees everytime.',
+    trackingBoldText: 'Fast delivery you can track.',
+    trackingBodyText: 'Real-time tracking from kitchen to doorstep.',
+    supportBoldText: 'Support that actually responds.',
+    supportBodyText: 'Something wrong with your order? Real people, real solutions. Not a bot.',
+    currency: '₦',
+    subtotal: '₦2,400',
+    deliveryFee: '₦550',
+    serviceFee: '₦240',
+    promoDiscount: '-₦1,000',
+    total: '₦2,190',
+  },
+
+  coverageMap: {
+    headlinePre: 'Live in',
+    headlineAccent: 'Yaba.',
+    headlineLine2: 'Growing across Lagos.',
+    body: 'Swoop delivers across Yaba — UNILAG, Yabatech, and surrounding areas. More locations launching soon.',
+    pinLabel: 'Yaba',
   },
 
   foodCities: 'Lagos, Abuja, and Port Harcourt',
 
   howToOrder: {
-    headline: 'How to order',
+    headline: 'How to order on Swoop',
     steps: [
       {
         number: '1',
-        title: 'Browse your favourites',
+        title: 'Browse restaurants near you.\n See menus, prices, and delivery times before you order.',
         description: 'Explore nearby restaurants, check menus, and find exactly what you\'re craving. See it all before you order.',
         screenImage: '/assets/NG-step-1.png',
       },
       {
         number: '2',
-        title: 'Add to cart & order',
+        title: 'Add to cart and checkout.\n Pick what you want. \n The price you see is the price you pay.',
         description: 'Pick your meals, customise if needed, and checkout in seconds. Fast, simple, no stress.',
         screenImage: '/assets/NG-step-2.png',
       },
       {
         number: '3',
-        title: 'Track it to your doorstep',
+        title: 'Track and receive your food. \n Watch your order in real time. \n Eat.',
         description: 'Watch your order move in real time—from the kitchen to your location. No guessing, just live updates.',
         screenImage: '/assets/NG-step-3.png',
       },
@@ -257,109 +338,111 @@ const NG_CONTENT: PageContent = {
 
   categories: [
     {
-      id:          'food',
-      title:       'Food Delivery',
+      id: 'food',
+      title: 'Food Delivery',
       description: 'Order from thousands of restaurants near you. Hot meals, fast delivery.',
-      color:       'food',
-      icon:        'UtensilsCrossed',
+      color: 'food',
+      icon: 'UtensilsCrossed',
     },
     {
-      id:          'grocery',
-      title:       'Groceries',
+      id: 'grocery',
+      title: 'Groceries',
       description: 'Fresh produce, pantry staples, and household items delivered in under 30 min.',
-      color:       'grocery',
-      icon:        'ShoppingBasket',
+      color: 'grocery',
+      icon: 'ShoppingBasket',
     },
     {
-      id:          'pharmacy',
-      title:       'Pharmacy',
+      id: 'pharmacy',
+      title: 'Pharmacy',
       description: 'Prescription and OTC medicines delivered safely to your door.',
-      color:       'pharmacy',
-      icon:        'Pill',
+      color: 'pharmacy',
+      icon: 'Pill',
     },
   ],
 
   stats: [
     { value: '500K+', label: 'Happy Customers' },
-    { value: '10K+',  label: 'Partner Restaurants' },
-    { value: '25+',   label: 'Cities in Nigeria' },
-    { value: '4.8★',  label: 'App Store Rating' },
+    { value: '10K+', label: 'Partner Restaurants' },
+    { value: '25+', label: 'Cities in Nigeria' },
+    { value: '4.8★', label: 'App Store Rating' },
   ],
 
   pricing: {
-    headline:    'Simple, transparent pricing',
+    headline: 'Simple, transparent pricing',
     subheadline: 'No hidden fees. Cancel anytime.',
     plans: [
       {
-        name:        'Basic',
-        price:       '₦0',
-        period:      'forever',
-        features:    ['3 free deliveries/month', 'Standard delivery speed', 'Email support'],
+        name: 'Basic',
+        price: '₦0',
+        period: 'forever',
+        features: ['3 free deliveries/month', 'Standard delivery speed', 'Email support'],
         highlighted: false,
-        cta:         'Get Started',
+        cta: 'Get Started',
       },
       {
-        name:        'Pro',
-        price:       '₦2,500',
-        period:      'per month',
-        features:    ['Unlimited deliveries', 'Priority delivery', 'Live chat support', 'Exclusive deals'],
+        name: 'Pro',
+        price: '₦2,500',
+        period: 'per month',
+        features: ['Unlimited deliveries', 'Priority delivery', 'Live chat support', 'Exclusive deals'],
         highlighted: true,
-        cta:         'Start Free Trial',
+        cta: 'Start Free Trial',
       },
       {
-        name:        'Business',
-        price:       '₦8,000',
-        period:      'per month',
-        features:    ['Everything in Pro', 'Team accounts', 'Dedicated account manager', 'API access'],
+        name: 'Business',
+        price: '₦8,000',
+        period: 'per month',
+        features: ['Everything in Pro', 'Team accounts', 'Dedicated account manager', 'API access'],
         highlighted: false,
-        cta:         'Contact Sales',
+        cta: 'Contact Sales',
       },
     ],
   },
 
   testimonials: [
     {
-      name:   'Adaeze Okonkwo',
-      role:   'Busy mum in Lagos',
-      body:   'Thumo saves me at least two hours every week. Groceries and school lunch — sorted!',
+      name: 'Adaeze Okonkwo',
+      role: 'Busy mum in Lagos',
+      body: 'Thumo saves me at least two hours every week. Groceries and school lunch — sorted!',
       avatar: '/images/avatar-ng-1.png',
     },
     {
-      name:   'Emeka Nwachukwu',
-      role:   'Software Engineer, Abuja',
-      body:   'The pharmacy delivery is a lifesaver. No more queues for routine medication.',
+      name: 'Emeka Nwachukwu',
+      role: 'Software Engineer, Abuja',
+      body: 'The pharmacy delivery is a lifesaver. No more queues for routine medication.',
       avatar: '/images/avatar-ng-2.png',
     },
     {
-      name:   'Funmi Adesanya',
-      role:   'Restaurant owner, Lagos',
-      body:   'Our orders tripled within the first month on Thumo. Best decision we ever made.',
+      name: 'Funmi Adesanya',
+      role: 'Restaurant owner, Lagos',
+      body: 'Our orders tripled within the first month on Thumo. Best decision we ever made.',
       avatar: '/images/avatar-ng-3.png',
     },
   ],
 
   join: {
-    headline:    'Be Part of the Movement',
+    headline: 'Be Part of the Movement',
     subheadline: 'Whether you want to earn or grow your business — Swoop is your partner.',
     merchant: {
-      title:    'Partner as a Merchant',
-      subtitle: 'No upfront costs and guaranteed weekly payouts.',
-      bullets:  ['White-glove onboarding', 'Transparent pricing – no price manipulation', 'Completely free to start!'],
+      title: 'Partner as a Merchant',
+      subtitle: 'Reach more customers, get fast payouts, and grow your business with a platform that puts you first',
+      bullets: ['No upfront costs', 'Fast, reliable payouts', 'Your own vendor profile', 'Marketing and visibility support'],
     },
     rider: {
-      title:    'Become a rider',
-      subtitle: 'The best earning rates of any food delivery app',
-      bullets:  ['Instant payouts', 'Flexible working', 'Incentive bonuses'],
+      title: 'Become a rider',
+      subtitle: 'Earn on your schedule. Get paid fast. Join a team that respects your time.',
+      bullets: ['No upfront costs', 'Fast payouts', 'Performance bonuses', 'Flexible hours', 'Branded gear provided'],
     },
-    ctaVariant:   'contact',
+    ctaVariant: 'contact',
     contactLabel: 'Contact Us',
-    contactUrl:   '#contact-us',
+    contactUrl: '#contact-us',
   },
 
   faqs: SHARED_FAQS,
-  downloadHeadline:    'Join the waitlist!',
-  downloadSubheadline: 'Sign up now and be the first to know when we go live —with exclusive early bird deals for customers!',
-  downloadCtaVariant:  'waitlist',
+  downloadHeadline: 'Experience Swoop!',
+  downloadSubheadline: 'From your favorite local spots to hidden gems, get hot meals brought straight to your doorstep; no stress, no waiting.',
+  downloadCtaVariant: 'app-stores',
+  appStoreUrl: 'https://apps.apple.com/us/app/thumo/id6749094829',
+  playStoreUrl: 'https://play.google.com/store/apps/details?id=com.thumoapp.users&pcampaignid=web_share',
 };
 
 // ---------------------------------------------------------------------------
@@ -376,36 +459,62 @@ const SZ_CONTENT: PageContent = {
   hero: {
     headlineLine1: 'Meet Swoop:',
     headlineLine2: "Eswatini's Super App",
-    subPre:      'Discover Swoop, the super-app that delivers food right to your door! ',
-    subBold:     'New features, new regions, superior experience.',
-    subPost:     ' Try food delivery like never before below:',
-    appStoreUrl:  'https://apps.apple.com/us/app/thumo/id6749094829',
+    subPre: 'Discover Swoop, the super-app that delivers food right to your door! ',
+    subBold: 'New features, new regions, superior experience.',
+    subPost: ' Try food delivery like never before below:',
+    appStoreUrl: 'https://apps.apple.com/us/app/thumo/id6749094829',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.thumoapp.users&pcampaignid=web_share',
-    mockupImage:     '/assets/SZ-step-1.png',
+    mockupImage: '/assets/SZ-step-1.png',
     handMockupImage: '/assets/hand-mockup-sz.png',
-    ctaVariant:      'app-stores',
+    ctaVariant: 'app-stores',
+  },
+
+  services: {
+    headline: 'Everything you want, ',
+    headline2: 'Swoop it up.',
+    subheadline: 'From breakfast to late night cravings, Swoop brings the best food in Eswatini straight to you.',
+    foodDeliveryTitle: 'Food Delivery',
+    foodDeliveryDescription: 'Your favorite restaurants, delivered fast',
+    features: ['Fast delivery', 'Honest pricing', 'Vendors you\'ll actually recognise'],
+    groceriesTitle: 'Groceries',
+    pharmacyTitle: 'Pharmacy',
+  },
+
+  whySwoop: {
+    pricingBoldText: 'No hidden fees.',
+    pricingBodyText: 'Transparent fees everytime.',
+    trackingBoldText: 'Fast delivery you can track.',
+    trackingBodyText: 'Real-time tracking from kitchen to doorstep.',
+    supportBoldText: 'Support that actually responds.',
+    supportBodyText: 'Something wrong with your order? Real people, real solutions. Not a bot.',
+    currency: 'E',
+    subtotal: 'E120',
+    deliveryFee: 'E25',
+    serviceFee: 'E12',
+    promoDiscount: '-E50',
+    total: 'E107',
   },
 
   foodCities: 'Mbabane, Matsapha, Ezulwini, and Manzini',
 
   howToOrder: {
-    headline: 'How to order',
+    headline: 'How to order on Swoop',
     steps: [
       {
         number: '1',
-        title: 'Browse your favourites',
+        title: 'Browse restaurants near you See menus, prices, and delivery times before you order.',
         description: 'Explore nearby restaurants, check menus, and find exactly what you\'re craving. See it all before you order.',
         screenImage: '/assets/SZ-step-1.png',
       },
       {
         number: '2',
-        title: 'Add to cart & order',
+        title: 'Add to cart and checkout Pick what you want. The price you see is the price you pay.',
         description: 'Pick your meals, customise if needed, and checkout in seconds. Fast, simple, no stress.',
         screenImage: '/assets/SZ-step-2.png',
       },
       {
         number: '3',
-        title: 'Track it to your doorstep',
+        title: 'Track and receive your food Watch your order in real time. Eat.',
         description: 'Watch your order move in real time—from the kitchen to your location. No guessing, just live updates.',
         screenImage: '/assets/SZ-step-3.png',
       },
@@ -414,111 +523,111 @@ const SZ_CONTENT: PageContent = {
 
   categories: [
     {
-      id:          'food',
-      title:       'Food Delivery',
+      id: 'food',
+      title: 'Food Delivery',
       description: 'Local favourites and international cuisines delivered fast across Eswatini.',
-      color:       'food',
-      icon:        'UtensilsCrossed',
+      color: 'food',
+      icon: 'UtensilsCrossed',
     },
     {
-      id:          'grocery',
-      title:       'Groceries',
+      id: 'grocery',
+      title: 'Groceries',
       description: 'Fresh, local produce and daily essentials — delivered within the hour.',
-      color:       'grocery',
-      icon:        'ShoppingBasket',
+      color: 'grocery',
+      icon: 'ShoppingBasket',
     },
     {
-      id:          'pharmacy',
-      title:       'Pharmacy',
+      id: 'pharmacy',
+      title: 'Pharmacy',
       description: 'Trusted medicines and health products dispatched from licensed pharmacies.',
-      color:       'pharmacy',
-      icon:        'Pill',
+      color: 'pharmacy',
+      icon: 'Pill',
     },
   ],
 
   stats: [
     { value: '50K+', label: 'Happy Customers' },
     { value: '500+', label: 'Partner Restaurants' },
-    { value: '2',    label: 'Major Cities' },
+    { value: '2', label: 'Major Cities' },
     { value: '4.9★', label: 'App Store Rating' },
   ],
 
   pricing: {
-    headline:    'Simple, transparent pricing',
+    headline: 'Simple, transparent pricing',
     subheadline: 'No hidden fees. Cancel anytime.',
     plans: [
       {
-        name:        'Basic',
-        price:       'E0',
-        period:      'forever',
-        features:    ['3 free deliveries/month', 'Standard delivery speed', 'Email support'],
+        name: 'Basic',
+        price: 'E0',
+        period: 'forever',
+        features: ['3 free deliveries/month', 'Standard delivery speed', 'Email support'],
         highlighted: false,
-        cta:         'Get Started',
+        cta: 'Get Started',
       },
       {
-        name:        'Pro',
-        price:       'E99',
-        period:      'per month',
-        features:    ['Unlimited deliveries', 'Priority delivery', 'Live chat support', 'Exclusive deals'],
+        name: 'Pro',
+        price: 'E99',
+        period: 'per month',
+        features: ['Unlimited deliveries', 'Priority delivery', 'Live chat support', 'Exclusive deals'],
         highlighted: true,
-        cta:         'Start Free Trial',
+        cta: 'Start Free Trial',
       },
       {
-        name:        'Business',
-        price:       'E350',
-        period:      'per month',
-        features:    ['Everything in Pro', 'Team accounts', 'Dedicated account manager', 'API access'],
+        name: 'Business',
+        price: 'E350',
+        period: 'per month',
+        features: ['Everything in Pro', 'Team accounts', 'Dedicated account manager', 'API access'],
         highlighted: false,
-        cta:         'Contact Sales',
+        cta: 'Contact Sales',
       },
     ],
   },
 
   testimonials: [
     {
-      name:   'Nompumelelo Dlamini',
-      role:   'Teacher, Mbabane',
-      body:   'Thumo changed how I shop. Groceries at my door before I even finish work.',
+      name: 'Nompumelelo Dlamini',
+      role: 'Teacher, Mbabane',
+      body: 'Thumo changed how I shop. Groceries at my door before I even finish work.',
       avatar: '/images/avatar-sz-1.png',
     },
     {
-      name:   'Sibusiso Nxumalo',
-      role:   'Entrepreneur, Manzini',
-      body:   'Incredibly fast delivery. The app is super smooth — I recommend it to everyone.',
+      name: 'Sibusiso Nxumalo',
+      role: 'Entrepreneur, Manzini',
+      body: 'Incredibly fast delivery. The app is super smooth — I recommend it to everyone.',
       avatar: '/images/avatar-sz-2.png',
     },
     {
-      name:   'Lindiwe Maseko',
-      role:   'Restaurant owner, Mbabane',
-      body:   'Joining Thumo gave our small restaurant national visibility. Game changer!',
+      name: 'Lindiwe Maseko',
+      role: 'Restaurant owner, Mbabane',
+      body: 'Joining Thumo gave our small restaurant national visibility. Game changer!',
       avatar: '/images/avatar-sz-3.png',
     },
   ],
 
   join: {
-    headline:    'Be Part of the Movement',
+    headline: 'Be Part of the Movement',
     subheadline: 'Whether you want to earn or grow your business — Swoop is your partner.',
     merchant: {
-      title:    'Partner as a Merchant',
+      title: 'Partner as a Merchant',
       subtitle: 'No upfront costs and guaranteed weekly payouts.',
-      bullets:  ['White-glove onboarding', 'Transparent pricing – no price manipulation', 'Completely free to start!'],
+      bullets: ['White-glove onboarding', 'Transparent pricing – no price manipulation', 'Completely free to start!'],
     },
     rider: {
-      title:    'Become a rider',
+      title: 'Become a rider',
       subtitle: 'The best earning rates of any food delivery app',
-      bullets:  ['Instant payouts', 'Flexible working', 'Incentive bonuses'],
+      bullets: ['Instant payouts', 'Flexible working', 'Incentive bonuses'],
     },
-    ctaVariant:   'app-stores',
-    appStoreUrl:  'https://apps.apple.com/us/app/thumo/id6749094829',
+    ctaVariant: 'app-stores',
+    appStoreUrl: 'https://apps.apple.com/us/app/thumo/id6749094829',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.thumoapp.users&pcampaignid=web_share',
   },
 
   faqs: SHARED_FAQS,
-  downloadHeadline:    'Experience Swoop!',
+  downloadHeadline: 'Experience Swoop!',
   downloadSubheadline: 'From your favorite local spots to hidden gems, get hot meals brought straight to your door—no stress, no waiting.',
-  downloadCtaVariant:  'app-stores',
-  appStoreUrl:         'https://apps.apple.com/us/app/thumo/id6749094829',
-  playStoreUrl:        'https://play.google.com/store/apps/details?id=com.thumoapp.users&pcampaignid=web_share',
+  downloadCtaVariant: 'app-stores',
+  appStoreUrl: 'https://apps.apple.com/us/app/thumo/id6749094829',
+  playStoreUrl: 'https://play.google.com/store/apps/details?id=com.thumoapp.users&pcampaignid=web_share',
 };
 
 // ---------------------------------------------------------------------------

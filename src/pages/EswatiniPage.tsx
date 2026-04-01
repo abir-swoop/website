@@ -1,6 +1,7 @@
 import Layout from '../components/layout/Layout';
 import Hero from '../components/sections/Hero';
 import Services from '../components/sections/Services';
+import WhySwoop from '../components/sections/WhySwoop';
 import HowToOrder from '../components/sections/HowToOrder';
 import Partners from '../components/sections/Partners';
 import Movement from '../components/sections/Movement';
@@ -16,11 +17,12 @@ export default function EswatiniPage() {
   return (
     <Layout content={content}>
       <Hero hero={content.hero} locale="SZ" />
-      <Services foodCities={content.foodCities} />
+      <Services content={content.services} />
+      <WhySwoop content={content.whySwoop} />
       <HowToOrder content={content.howToOrder} locale="SZ" />
-      <Partners />
-      <Movement join={content.join} />
+      <Partners locale="SZ" />
       <Cta />
+      <Movement join={content.join} />
       <Faqs faqs={content.faqs} />
       <VCs />
       <Download
