@@ -57,7 +57,7 @@ function ContactButton({ label, url }: { label: string; url: string }) {
 }
 
 export default function Movement({ join }: Props) {
-  const { headline, subheadline, merchant, rider, ctaVariant, appStoreUrl, playStoreUrl } = join;
+  const { merchant, rider, ctaVariant, appStoreUrl, playStoreUrl } = join;
   const [ref, inView] = useInView();
 
   return (

@@ -34,8 +34,6 @@ interface Props {
   content: WhySwoopContent;
 }
 
-const checkDeliveredIcon = '/assets/check-delivered.png';
-
 const trackingSteps = [
   'Order Accepted',
   'Order is ready',
