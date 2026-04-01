@@ -79,7 +79,7 @@ export default function Movement({ join }: Props) {
         {/* Card 1 — Merchant (image left, text right) */}
         <div className={`rounded-2xl overflow-hidden bg-white flex flex-col md:flex-row transition-all duration-700 ease-out delay-200 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {/* Illustration */}
-          <div className="md:w-[40%] bg-[#e8e4ff] flex items-end justify-center shrink-0 overflow-hidden" style={{ minHeight: 300 }}>
+          <div className="md:w-[40%] h-[300px] h-auto bg-[#e8e4ff] flex items-end justify-center shrink-0 overflow-hidden" style={{ minHeight: 300 }}>
             <video
               src="/assets/store-vid.mp4"
               autoPlay

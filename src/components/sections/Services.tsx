@@ -105,7 +105,7 @@ export default function Services({ content }: Props) {
               aria-hidden="true"
               className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[75%] w-auto object-contain pointer-events-none"
             />
-            <div className="absolute top-3 right-3 px-4 p-2 rounded-xl bg-black/50">
+            <div className="absolute bottom-3 md:top-3 right-3 px-4 p-2 rounded-xl bg-black/50">
               <p className="text-white text-[16px] font-semibold">Coming Soon..</p>
             </div>
           </div>
@@ -124,7 +124,7 @@ export default function Services({ content }: Props) {
               className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[75%] w-auto object-contain pointer-events-none"
             />
           </div>
-          <div className="absolute top-3 right-3 px-4 p-2 rounded-xl bg-black/50">
+          <div className="absolute bottom-3 md:top-3 right-3 px-4 p-2 rounded-xl bg-black/50">
             <p className="text-white text-[16px] font-semibold">Coming Soon..</p>
           </div>
         </div>
