@@ -268,8 +268,8 @@ const NG_CONTENT: PageContent = {
     subPre: 'Food delivery in Yaba. Fast, transparent, and built for how you eat.',
     subBold: '',
     subPost: '',
-    appStoreUrl: 'https://apps.apple.com/us/app/thumo/id6749094829',
-    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.thumoapp.users&pcampaignid=web_share',
+    appStoreUrl: 'https://apps.apple.com/ng/app/swoop-food/id6749094829',
+    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.thumoapp.users',
     mockupImage: '/assets/NG-step-1.png',
     handMockupImage: '/assets/hand-mockup-ng.png',
     ctaVariant: 'app-stores',
@@ -441,8 +441,8 @@ const NG_CONTENT: PageContent = {
   downloadHeadline: 'Experience Swoop!',
   downloadSubheadline: 'From your favorite local spots to hidden gems, get hot meals brought straight to your doorstep; no stress, no waiting.',
   downloadCtaVariant: 'app-stores',
-  appStoreUrl: 'https://apps.apple.com/us/app/thumo/id6749094829',
-  playStoreUrl: 'https://play.google.com/store/apps/details?id=com.thumoapp.users&pcampaignid=web_share',
+  appStoreUrl: 'https://apps.apple.com/ng/app/swoop-food/id6749094829',
+  playStoreUrl: 'https://play.google.com/store/apps/details?id=com.thumoapp.users',
 };
 
 // ---------------------------------------------------------------------------
@@ -462,8 +462,8 @@ const SZ_CONTENT: PageContent = {
     subPre: 'Discover Swoop, the super-app that delivers food right to your door! ',
     subBold: 'New features, new regions, superior experience.',
     subPost: ' Try food delivery like never before below:',
-    appStoreUrl: 'https://apps.apple.com/us/app/thumo/id6749094829',
-    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.thumoapp.users&pcampaignid=web_share',
+    appStoreUrl: 'https://apps.apple.com/ng/app/swoop-food/id6749094829',
+    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.thumoapp.users',
     mockupImage: '/assets/SZ-step-1.png',
     handMockupImage: '/assets/hand-mockup-sz.png',
     ctaVariant: 'app-stores',
@@ -618,16 +618,16 @@ const SZ_CONTENT: PageContent = {
       bullets: ['Instant payouts', 'Flexible working', 'Incentive bonuses'],
     },
     ctaVariant: 'app-stores',
-    appStoreUrl: 'https://apps.apple.com/us/app/thumo/id6749094829',
-    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.thumoapp.users&pcampaignid=web_share',
+    appStoreUrl: 'https://apps.apple.com/ng/app/swoop-food/id6749094829',
+    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.thumoapp.users',
   },
 
   faqs: SHARED_FAQS,
   downloadHeadline: 'Experience Swoop!',
   downloadSubheadline: 'From your favorite local spots to hidden gems, get hot meals brought straight to your door—no stress, no waiting.',
   downloadCtaVariant: 'app-stores',
-  appStoreUrl: 'https://apps.apple.com/us/app/thumo/id6749094829',
-  playStoreUrl: 'https://play.google.com/store/apps/details?id=com.thumoapp.users&pcampaignid=web_share',
+  appStoreUrl: 'https://apps.apple.com/ng/app/swoop-food/id6749094829',
+  playStoreUrl: 'https://play.google.com/store/apps/details?id=com.thumoapp.users',
 };
 
 // ---------------------------------------------------------------------------
