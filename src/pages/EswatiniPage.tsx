@@ -8,6 +8,7 @@ import Movement from '../components/sections/Movement';
 import Cta from '../components/sections/Cta';
 import Faqs from '../components/sections/Faqs';
 import Download from '../components/sections/Download';
+import ContactUs from '../components/sections/ContactUs';
 import VCs from '../components/sections/VCs';
 import { CONTENT_MAP } from '../config/contentConfig';
 
@@ -33,6 +34,7 @@ export default function EswatiniPage() {
         playStoreUrl={content.playStoreUrl}
         mockupImage={content.hero.handMockupImage}
       />
+      <ContactUs />
     </Layout>
   );
 }
