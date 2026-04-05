@@ -152,43 +152,55 @@ export default function Navbar({ locale }: Props) {
         {/* ── Centre: Nav links (desktop) ── */}
         <div className="hidden md:flex items-center gap-8 flex-1 justify-center">
           <a
-            href="#home"
-            onClick={handleNavClick('home')}
+            href={home}
             className="font-medium text-[16px] text-white/80 hover:text-white leading-none transition-opacity whitespace-nowrap"
           >
             Home
           </a>
-          {[
-            { label: 'Services', id: 'services', offset: 0 },
-            { label: 'Contact Us', id: 'contact-us', offset: 200 },
-            { label: 'FAQs', id: 'faqs', offset: 0 }
-          ].map(({ label, id, offset }) => (
-            <a
-              key={label}
-              href={`#${id}`}
-              onClick={handleNavClick(id, offset)}
-              className="font-medium text-[16px] text-white/80 hover:text-white leading-none transition-opacity whitespace-nowrap"
-            >
-              {label}
-            </a>
-          ))}
+          <a
+            href="#movement"
+            onClick={handleNavClick('movement', 100)}
+            className="font-medium text-[16px] text-white/80 hover:text-white leading-none transition-opacity whitespace-nowrap"
+          >
+            About
+          </a>
+          <a
+            href="#movement"
+            onClick={handleNavClick('movement', 100)}
+            className="font-medium text-[16px] text-white/80 hover:text-white leading-none transition-opacity whitespace-nowrap"
+          >
+            For Vendors
+          </a>
+          <a
+            href="#movement"
+            onClick={handleNavClick('movement', 100)}
+            className="font-medium text-[16px] text-white/80 hover:text-white leading-none transition-opacity whitespace-nowrap"
+          >
+            For Riders
+          </a>
+          <a
+            href="#faqs"
+            onClick={handleNavClick('faqs', 100)}
+            className="font-medium text-[16px] text-white/80 hover:text-white leading-none transition-opacity whitespace-nowrap"
+          >
+            FAQs
+          </a>
         </div>
 
         {/* ── Right: CTA (desktop) + Hamburger (mobile) ── */}
         <div className="flex items-center gap-3">
           {/* Desktop CTA */}
           <div className="hidden md:block">
-            <a
-              href="#contact-us"
-              onClick={handleNavClick('contact-us', 200)}
+            <button
+              onClick={handleNavClick('contact-us', 100)}
               className="flex items-center gap-1.5 bg-[#0b0062] hover:bg-[#0d0078] transition-colors rounded-xl px-3 py-3 sm:py-4 shrink-0"
             >
               <span className="font-semibold text-[16px] sm:text-[18px] text-white tracking-[-0.04em] leading-none whitespace-nowrap">
-                Download Swoop
+                Download
               </span>
               <img src={appleIcon} alt="Apple" className="size-4 object-contain" />
               <img src={googleIcon} alt="Google Play" className="size-4 object-contain" />
-            </a>
+            </button>
           </div>
 
           {/* Mobile hamburger */}
@@ -208,51 +220,51 @@ export default function Navbar({ locale }: Props) {
         <div className="md:hidden bg-[#4d36ff]/80 backdrop-blur-md border-t border-white/10 px-4 pb-4 rounded-b-2xl">
           <div className="flex flex-col gap-1">
             <a
-              href="#home"
-              onClick={handleNavClick('home')}
+              href={home}
               className="font-medium text-[16px] text-white/80 hover:text-white py-3 transition-opacity"
             >
               Home
             </a>
-            {[
-              { label: 'Services', id: 'services', offset: 0 },
-              { label: 'Contact Us', id: 'contact-us', offset: 200 },
-              { label: 'FAQs', id: 'faqs', offset: 0 }
-            ].map(({ label, id, offset }) => (
-              <a
-                key={label}
-                href={`#${id}`}
-                onClick={handleNavClick(id, offset)}
-                className="font-medium text-[16px] text-white/80 hover:text-white py-3 transition-opacity"
-              >
-                {label}
-              </a>
-            ))}
+            <a
+              href="#movement"
+              onClick={handleNavClick('movement', 100)}
+              className="font-medium text-[16px] text-white/80 hover:text-white py-3 transition-opacity"
+            >
+              About
+            </a>
+            <a
+              href="#movement"
+              onClick={handleNavClick('movement', 100)}
+              className="font-medium text-[16px] text-white/80 hover:text-white py-3 transition-opacity"
+            >
+              For Vendors
+            </a>
+            <a
+              href="#movement"
+              onClick={handleNavClick('movement', 100)}
+              className="font-medium text-[16px] text-white/80 hover:text-white py-3 transition-opacity"
+            >
+              For Riders
+            </a>
+            <a
+              href="#faqs"
+              onClick={handleNavClick('faqs', 100)}
+              className="font-medium text-[16px] text-white/80 hover:text-white py-3 transition-opacity"
+            >
+              FAQs
+            </a>
           </div>
           <div className="mt-3">
-            {locale === 'NG' ? (
-              <a
-                href="#contact-us"
-                onClick={handleNavClick('contact-us', 200)}
-                className="block text-center bg-[#0b0062] hover:bg-[#0d0078] transition-colors rounded-xl px-5 py-3"
-              >
-                <span className="font-semibold text-[16px] text-white tracking-[-0.04em] leading-none">
-                  Join the waitlist
-                </span>
-              </a>
-            ) : (
-              <a
-                href="#contact-us"
-                onClick={handleNavClick('contact-us', 200)}
-                className="flex items-center justify-center gap-1.5 bg-[#0b0062] hover:bg-[#0d0078] transition-colors rounded-xl px-3 py-3"
-              >
-                <img src={appleIcon} alt="Apple" className="size-4 object-contain" />
-                <img src={googleIcon} alt="Google Play" className="size-4 object-contain" />
-                <span className="font-semibold text-[16px] text-white tracking-[-0.04em] leading-none">
-                  Download the App
-                </span>
-              </a>
-            )}
+            <button
+              onClick={handleNavClick('download', 100)}
+              className="w-full flex items-center justify-center gap-1.5 bg-[#0b0062] hover:bg-[#0d0078] transition-colors rounded-xl px-3 py-3"
+            >
+              <img src={appleIcon} alt="Apple" className="size-4 object-contain" />
+              <img src={googleIcon} alt="Google Play" className="size-4 object-contain" />
+              <span className="font-semibold text-[16px] text-white tracking-[-0.04em] leading-none">
+                Download
+              </span>
+            </button>
           </div>
         </div>
       )}

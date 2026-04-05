@@ -60,6 +60,18 @@ export default function Footer({ locale = 'NG' }: Props) {
               <img src="/assets/swoop-wordmark-nav.svg" alt="Swoop" className="h-8 w-28 ml-[-4px] mt-4" draggable={false} />
             </div>
             <p className="text-white/80 text-base">Africa's Super App</p>
+            {/* Social media links */}
+            <div className="flex gap-6 items-center">
+              <a href="https://www.instagram.com/swoopappng" target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-70">
+                <img src="/assets/instagram-icon.svg" alt="Instagram" className="h-6 w-6" draggable={false} />
+              </a>
+              <a href="https://x.com/swoopappng" target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-70">
+                <img src="/assets/twitter-icon.svg" alt="Twitter" className="h-6 w-6" draggable={false} />
+              </a>
+              <a href="https://www.tiktok.com/@swoopappng" target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-70">
+                <img src="/assets/tiktok-icon.svg" alt="TikTok" className="h-6 w-6" draggable={false} />
+              </a>
+            </div>
           </div>
 
           {/* Nav columns */}
