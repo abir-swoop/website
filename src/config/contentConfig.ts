@@ -1,8 +1,8 @@
-/**
+﻿/**
  * contentConfig.ts
  *
  * Single source of truth for all locale-specific content.
- * Components receive a `content` prop derived from this config —
+ * Components receive a `content` prop derived from this config â€”
  * no duplicate components, no inline copy.
  *
  * Locale keys: "NG" (Nigeria, route "/") | "SZ" (Eswatini, route "/sz")
@@ -19,8 +19,8 @@ export interface Country {
 }
 
 export const COUNTRIES: Country[] = [
-  { code: 'NG', name: 'Nigeria', flag: '🇳🇬', route: '/' },
-  { code: 'SZ', name: 'Eswatini', flag: '🇸🇿', route: '/sz' },
+  { code: 'NG', name: 'Nigeria', flag: 'ðŸ‡³ðŸ‡¬', route: '/' },
+  { code: 'SZ', name: 'Eswatini', flag: 'ðŸ‡¸ðŸ‡¿', route: '/sz' },
 ];
 
 // ---------------------------------------------------------------------------
@@ -136,6 +136,11 @@ export interface FaqItem {
   answer: string;
 }
 
+export interface FaqSection {
+  title: string;
+  items: FaqItem[];
+}
+
 // ---------------------------------------------------------------------------
 // Services section
 // ---------------------------------------------------------------------------
@@ -214,7 +219,7 @@ export interface PageContent {
   pricing: PricingContent;
   testimonials: Testimonial[];
   join: JoinContent;
-  faqs: FaqItem[];
+  faqs: FaqSection[];
   /** Download / app section */
   downloadHeadline: string;
   downloadSubheadline: string;
@@ -227,29 +232,127 @@ export interface PageContent {
 // ---------------------------------------------------------------------------
 // Shared FAQs (same across all locales)
 // ---------------------------------------------------------------------------
-const SHARED_FAQS: FaqItem[] = [
+const SHARED_FAQS: FaqSection[] = [
   {
-    question: 'What is Swoop?',
-    answer: 'Swoop is a super-app built for African cities — starting with food delivery. Order from your favourite restaurants and get it delivered fast. Stay tuned for more services.',
+    title: 'About Swoop',
+    items: [
+      {
+        question: 'What is Swoop?',
+        answer: 'Swoop is a same-day food delivery app built for Nigerian cities. Order from your favourite local restaurants, get it delivered fast, and pay fair, transparent fees. No hidden charges, no checkout surprises.',
+      },
+      {
+        question: 'Where does Swoop deliver?',
+        answer: 'We are currently live in Yaba and environs. More Lagos locations are coming soon, and we will keep you posted.',
+      },
+      {
+        question: 'Is Swoop available on my phone?',
+        answer: 'Yes. Available on both iPhone and Android. Download it from the App Store or Google Play.',
+      },
+    ],
   },
   {
-    question: 'Where is Swoop available?',
-    answer: "We're live across four regions in Eswatini — Mbabane, Ezulwini, Matsapha, and Manzini. Lagos, Nigeria to come very soon.",
+    title: 'Ordering',
+    items: [
+      {
+        question: 'How do I place an order?',
+        answer: 'Download the Swoop app, browse restaurants near you, add items to your cart, and checkout. The whole process takes about a minute.',
+      },
+      {
+        question: 'Is there a minimum order?',
+        answer: 'Yes. The minimum order amount is 3,500.',
+      },
+      {
+        question: 'Can I order from more than one restaurant at a time?',
+        answer: 'Not yet - but it is on the way. For now, each order is limited to one restaurant at a time.',
+      },
+    ],
   },
   {
-    question: 'How do I order?',
-    answer: 'Download the app and sign up with your phone number, choose your location, pick a restaurant, and check out. You can pay by card, or cash if in Eswatini. Your rider is tracked in real time.',
+    title: 'Pricing & Payment',
+    items: [
+      {
+        question: 'How much does delivery cost?',
+        answer: 'Delivery fees vary based on your location. You will always see the exact fee upfront before you confirm your order - no surprises at checkout.',
+      },
+      {
+        question: 'How do I pay?',
+        answer: 'We accept card payments, bank transfers, and OPay.',
+      },
+      {
+        question: 'Is my payment secure?',
+        answer: 'Yes. All payments are processed securely. We do not store your card details unless you choose to save them to your Swoop account.',
+      },
+    ],
   },
   {
-    question: "I'm in Lagos. When do you launch?",
-    answer: "We're launching in Lagos very soon. Join the waitlist to be first in line and get early access deals when we go live.",
+    title: 'Delivery',
+    items: [
+      {
+        question: 'How long does delivery take?',
+        answer: 'Delivery times vary depending on the restaurant and your location. You will see an estimated delivery time after you place your order, so you always know what to expect.',
+      },
+      {
+        question: 'Can I track my order?',
+        answer: 'Yes. Swoop offers real-time tracking from the moment your order leaves the kitchen to the moment it arrives at your door.',
+      },
+      {
+        question: 'What if my delivery is late?',
+        answer: 'Reach out to us through the app, and we will look into it immediately and get it sorted.',
+      },
+    ],
   },
   {
-    question: 'How do I partner with Swoop?',
-    answer: "Whether you're a restaurant owner or want to ride with us, you can download the app in Eswatini or use the Contact Us button in Nigeria. We're actively open to self-onboarding across Eswatini and assisting riders and merchants to come online with us for our Lagos launch.",
+    title: 'Issues & Support',
+    items: [
+      {
+        question: 'What if something is wrong with my order?',
+        answer: 'Contact us through the app, and we will resolve it as quickly as possible.',
+      },
+      {
+        question: 'Can I cancel my order?',
+        answer: 'Yes, as long as the restaurant has not started preparing your order. You can cancel directly through the app.',
+      },
+      {
+        question: 'How do I contact support?',
+        answer: 'Log in to the app and send us a message via the in-app chat. Our support team is on standby and ready to help - available daily from 9 am to 9 pm.',
+      },
+    ],
+  },
+  {
+    title: 'For Vendors',
+    items: [
+      {
+        question: 'How do I sell on Swoop?',
+        answer: 'Fill out the vendor form on our website, and our team will reach out to walk you through the onboarding process.',
+      },
+      {
+        question: 'Does it cost anything to join?',
+        answer: 'There are no upfront costs to list your restaurant on Swoop.',
+      },
+      {
+        question: 'How do payouts work?',
+        answer: 'Payouts are fast and reliable. Full details will be shared with you during onboarding.',
+      },
+    ],
+  },
+  {
+    title: 'For Riders',
+    items: [
+      {
+        question: 'How do I become a Swoop rider?',
+        answer: 'Fill out the rider application form on our website, and we will get back to you with next steps.',
+      },
+      {
+        question: 'What do I need to get started?',
+        answer: 'A valid ID, a smartphone, and a motorcycle or bicycle. Full requirements will be shared when you apply.',
+      },
+      {
+        question: 'How do I get paid?',
+        answer: 'Your earnings are tracked in real time through the app and paid out on a fast, regular schedule. Full payout details are shared during onboarding.',
+      },
+    ],
   },
 ];
-
 // ---------------------------------------------------------------------------
 // Nigeria (NG) content
 // ---------------------------------------------------------------------------
@@ -259,7 +362,7 @@ const NG_CONTENT: PageContent = {
 
   strip: {
     variant: 'launch',
-    launchText: '🎉 Swoop is now live in Yaba! Download now',
+    launchText: 'ðŸŽ‰ Swoop is now live in Yaba! Download now',
   },
 
   hero: {
@@ -294,19 +397,19 @@ const NG_CONTENT: PageContent = {
     trackingBodyText: 'Real-time tracking from kitchen to doorstep.',
     supportBoldText: 'Support that actually responds.',
     supportBodyText: 'Something wrong with your order? Real people, real solutions. Not a bot.',
-    currency: '₦',
-    subtotal: '₦2,400',
-    deliveryFee: '₦550',
-    serviceFee: '₦240',
-    promoDiscount: '-₦1,000',
-    total: '₦2,190',
+    currency: 'â‚¦',
+    subtotal: 'â‚¦2,400',
+    deliveryFee: 'â‚¦550',
+    serviceFee: 'â‚¦240',
+    promoDiscount: '-â‚¦1,000',
+    total: 'â‚¦2,190',
   },
 
   coverageMap: {
     headlinePre: 'Live in',
     headlineAccent: 'Yaba.',
     headlineLine2: 'Growing across Lagos.',
-    body: 'Swoop delivers across Yaba — UNILAG, Yabatech, and surrounding areas. More locations launching soon.',
+    body: 'Swoop delivers across Yaba â€” UNILAG, Yabatech, and surrounding areas. More locations launching soon.',
     pinLabel: 'Yaba',
   },
 
@@ -330,7 +433,7 @@ const NG_CONTENT: PageContent = {
       {
         number: '3',
         title: 'Track and receive your food. \n Watch your order in real time. \n Eat.',
-        description: 'Watch your order move in real time—from the kitchen to your location. No guessing, just live updates.',
+        description: 'Watch your order move in real timeâ€”from the kitchen to your location. No guessing, just live updates.',
         screenImage: '/assets/NG-step-3.png',
       },
     ],
@@ -364,7 +467,7 @@ const NG_CONTENT: PageContent = {
     { value: '500K+', label: 'Happy Customers' },
     { value: '10K+', label: 'Partner Restaurants' },
     { value: '25+', label: 'Cities in Nigeria' },
-    { value: '4.8★', label: 'App Store Rating' },
+    { value: '4.8â˜…', label: 'App Store Rating' },
   ],
 
   pricing: {
@@ -373,7 +476,7 @@ const NG_CONTENT: PageContent = {
     plans: [
       {
         name: 'Basic',
-        price: '₦0',
+        price: 'â‚¦0',
         period: 'forever',
         features: ['3 free deliveries/month', 'Standard delivery speed', 'Email support'],
         highlighted: false,
@@ -381,7 +484,7 @@ const NG_CONTENT: PageContent = {
       },
       {
         name: 'Pro',
-        price: '₦2,500',
+        price: 'â‚¦2,500',
         period: 'per month',
         features: ['Unlimited deliveries', 'Priority delivery', 'Live chat support', 'Exclusive deals'],
         highlighted: true,
@@ -389,7 +492,7 @@ const NG_CONTENT: PageContent = {
       },
       {
         name: 'Business',
-        price: '₦8,000',
+        price: 'â‚¦8,000',
         period: 'per month',
         features: ['Everything in Pro', 'Team accounts', 'Dedicated account manager', 'API access'],
         highlighted: false,
@@ -402,7 +505,7 @@ const NG_CONTENT: PageContent = {
     {
       name: 'Adaeze Okonkwo',
       role: 'Busy mum in Lagos',
-      body: 'Thumo saves me at least two hours every week. Groceries and school lunch — sorted!',
+      body: 'Thumo saves me at least two hours every week. Groceries and school lunch â€” sorted!',
       avatar: '/images/avatar-ng-1.png',
     },
     {
@@ -421,7 +524,7 @@ const NG_CONTENT: PageContent = {
 
   join: {
     headline: 'Be Part of the Movement',
-    subheadline: 'Whether you want to earn or grow your business — Swoop is your partner.',
+    subheadline: 'Whether you want to earn or grow your business â€” Swoop is your partner.',
     merchant: {
       title: 'Partner as a Merchant',
       subtitle: 'Reach more customers, get fast payouts, and grow your business with a platform that puts you first',
@@ -515,7 +618,7 @@ const SZ_CONTENT: PageContent = {
       {
         number: '3',
         title: 'Track and receive your food Watch your order in real time. Eat.',
-        description: 'Watch your order move in real time—from the kitchen to your location. No guessing, just live updates.',
+        description: 'Watch your order move in real timeâ€”from the kitchen to your location. No guessing, just live updates.',
         screenImage: '/assets/SZ-step-3.png',
       },
     ],
@@ -532,7 +635,7 @@ const SZ_CONTENT: PageContent = {
     {
       id: 'grocery',
       title: 'Groceries',
-      description: 'Fresh, local produce and daily essentials — delivered within the hour.',
+      description: 'Fresh, local produce and daily essentials â€” delivered within the hour.',
       color: 'grocery',
       icon: 'ShoppingBasket',
     },
@@ -549,7 +652,7 @@ const SZ_CONTENT: PageContent = {
     { value: '50K+', label: 'Happy Customers' },
     { value: '500+', label: 'Partner Restaurants' },
     { value: '2', label: 'Major Cities' },
-    { value: '4.9★', label: 'App Store Rating' },
+    { value: '4.9â˜…', label: 'App Store Rating' },
   ],
 
   pricing: {
@@ -593,7 +696,7 @@ const SZ_CONTENT: PageContent = {
     {
       name: 'Sibusiso Nxumalo',
       role: 'Entrepreneur, Manzini',
-      body: 'Incredibly fast delivery. The app is super smooth — I recommend it to everyone.',
+      body: 'Incredibly fast delivery. The app is super smooth â€” I recommend it to everyone.',
       avatar: '/images/avatar-sz-2.png',
     },
     {
@@ -606,11 +709,11 @@ const SZ_CONTENT: PageContent = {
 
   join: {
     headline: 'Be Part of the Movement',
-    subheadline: 'Whether you want to earn or grow your business — Swoop is your partner.',
+    subheadline: 'Whether you want to earn or grow your business â€” Swoop is your partner.',
     merchant: {
       title: 'Partner as a Merchant',
       subtitle: 'No upfront costs and guaranteed weekly payouts.',
-      bullets: ['White-glove onboarding', 'Transparent pricing – no price manipulation', 'Completely free to start!'],
+      bullets: ['White-glove onboarding', 'Transparent pricing â€“ no price manipulation', 'Completely free to start!'],
     },
     rider: {
       title: 'Become a rider',
@@ -624,16 +727,17 @@ const SZ_CONTENT: PageContent = {
 
   faqs: SHARED_FAQS,
   downloadHeadline: 'Experience Swoop!',
-  downloadSubheadline: 'From your favorite local spots to hidden gems, get hot meals brought straight to your door—no stress, no waiting.',
+  downloadSubheadline: 'From your favorite local spots to hidden gems, get hot meals brought straight to your doorâ€”no stress, no waiting.',
   downloadCtaVariant: 'app-stores',
   appStoreUrl: 'https://apps.apple.com/ng/app/swoop-food/id6749094829',
   playStoreUrl: 'https://play.google.com/store/apps/details?id=com.thumoapp.users',
 };
 
 // ---------------------------------------------------------------------------
-// Exported map — use this in pages/hooks
+// Exported map â€” use this in pages/hooks
 // ---------------------------------------------------------------------------
 export const CONTENT_MAP: Record<Locale, PageContent> = {
   NG: NG_CONTENT,
   SZ: SZ_CONTENT,
 };
+

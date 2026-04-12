@@ -36,7 +36,7 @@ export default function Services({ content }: Props) {
           </div>
 
           {/* ── Features row ── */}
-          <div className={`flex flex-col md:flex-row gap-4 w-full transition-all duration-700 ease-out delay-200 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          {/* <div className={`flex flex-col md:flex-row gap-4 w-full transition-all duration-700 ease-out delay-200 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             {content.features.map((feature, idx) => {
               const colors = ['#0da239', '#f3aa43', '#e3483f'];
               const rotations = [-7.55, 1.66, -3.99];
@@ -49,7 +49,7 @@ export default function Services({ content }: Props) {
                 </div>
               );
             })}
-          </div>
+          </div> */}
         </div>
 
         {/* ── Row 1: Food Delivery ── */}
@@ -105,7 +105,7 @@ export default function Services({ content }: Props) {
               aria-hidden="true"
               className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[75%] w-auto object-contain pointer-events-none"
             />
-            <div className="absolute bottom-3 md:top-3 right-3 px-4 p-2 rounded-xl bg-black/50">
+            <div className="absolute bottom-3 md:bottom-auto md:top-3 right-3 px-4 p-2 rounded-xl bg-black/50">
               <p className="text-white text-[16px] font-semibold">Coming Soon..</p>
             </div>
           </div>
@@ -124,7 +124,7 @@ export default function Services({ content }: Props) {
               className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[75%] w-auto object-contain pointer-events-none"
             />
           </div>
-          <div className="absolute bottom-3 md:top-3 right-3 px-4 p-2 rounded-xl bg-black/50">
+          <div className="absolute bottom-3 md:bottom-auto md:top-3 right-3 px-4 p-2 rounded-xl bg-black/50">
             <p className="text-white text-[16px] font-semibold">Coming Soon..</p>
           </div>
         </div>
