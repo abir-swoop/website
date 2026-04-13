@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://swoop.com.ng/sitemap.xml
