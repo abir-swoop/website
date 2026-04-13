@@ -2,7 +2,7 @@
  * contentConfig.ts
  *
  * Single source of truth for all locale-specific content.
- * Components receive a `content` prop derived from this config â€”
+ * Components receive a `content` prop derived from this config  - 
  * no duplicate components, no inline copy.
  *
  * Locale keys: "NG" (Nigeria, route "/") | "SZ" (Eswatini, route "/sz")
@@ -19,8 +19,8 @@ export interface Country {
 }
 
 export const COUNTRIES: Country[] = [
-  { code: 'NG', name: 'Nigeria', flag: 'ðŸ‡³ðŸ‡¬', route: '/' },
-  { code: 'SZ', name: 'Eswatini', flag: 'ðŸ‡¸ðŸ‡¿', route: '/sz' },
+  { code: 'NG', name: 'Nigeria', flag: '🇳🇬', route: '/' },
+  { code: 'SZ', name: 'Eswatini', flag: '🇸🇿', route: '/sz' },
 ];
 
 // ---------------------------------------------------------------------------
@@ -362,7 +362,7 @@ const NG_CONTENT: PageContent = {
 
   strip: {
     variant: 'launch',
-    launchText: 'ðŸŽ‰ Swoop is now live in Yaba! Download now',
+    launchText: '🎉 Swoop is now live in Yaba! Download now',
   },
 
   hero: {
@@ -397,19 +397,19 @@ const NG_CONTENT: PageContent = {
     trackingBodyText: 'Real-time tracking from kitchen to doorstep.',
     supportBoldText: 'Support that actually responds.',
     supportBodyText: 'Something wrong with your order? Real people, real solutions. Not a bot.',
-    currency: 'â‚¦',
-    subtotal: 'â‚¦2,400',
-    deliveryFee: 'â‚¦550',
-    serviceFee: 'â‚¦240',
-    promoDiscount: '-â‚¦1,000',
-    total: 'â‚¦2,190',
+    currency: '₦',
+    subtotal: '₦2,400',
+    deliveryFee: '₦550',
+    serviceFee: '₦240',
+    promoDiscount: '-₦1,000',
+    total: '₦2,190',
   },
 
   coverageMap: {
     headlinePre: 'Live in',
     headlineAccent: 'Yaba.',
     headlineLine2: 'Growing across Lagos.',
-    body: 'Swoop delivers across Yaba â€” UNILAG, Yabatech, and surrounding areas. More locations launching soon.',
+    body: 'Swoop delivers across Yaba - UNILAG, Yabatech, and surrounding areas. More locations launching soon.',
     pinLabel: 'Yaba',
   },
 
@@ -433,7 +433,7 @@ const NG_CONTENT: PageContent = {
       {
         number: '3',
         title: 'Track and receive your food. \n Watch your order in real time. \n Eat.',
-        description: 'Watch your order move in real timeâ€”from the kitchen to your location. No guessing, just live updates.',
+        description: 'Watch your order move in real time - from the kitchen to your location. No guessing, just live updates.',
         screenImage: '/assets/NG-step-3.png',
       },
     ],
@@ -467,37 +467,14 @@ const NG_CONTENT: PageContent = {
     { value: '500K+', label: 'Happy Customers' },
     { value: '10K+', label: 'Partner Restaurants' },
     { value: '25+', label: 'Cities in Nigeria' },
-    { value: '4.8â˜…', label: 'App Store Rating' },
+    { value: '4.8★', label: 'App Store Rating' },
   ],
 
   pricing: {
     headline: 'Simple, transparent pricing',
     subheadline: 'No hidden fees. Cancel anytime.',
     plans: [
-      {
-        name: 'Basic',
-        price: 'â‚¦0',
-        period: 'forever',
-        features: ['3 free deliveries/month', 'Standard delivery speed', 'Email support'],
-        highlighted: false,
-        cta: 'Get Started',
-      },
-      {
-        name: 'Pro',
-        price: 'â‚¦2,500',
-        period: 'per month',
-        features: ['Unlimited deliveries', 'Priority delivery', 'Live chat support', 'Exclusive deals'],
-        highlighted: true,
-        cta: 'Start Free Trial',
-      },
-      {
-        name: 'Business',
-        price: 'â‚¦8,000',
-        period: 'per month',
-        features: ['Everything in Pro', 'Team accounts', 'Dedicated account manager', 'API access'],
-        highlighted: false,
-        cta: 'Contact Sales',
-      },
+
     ],
   },
 
@@ -505,7 +482,7 @@ const NG_CONTENT: PageContent = {
     {
       name: 'Adaeze Okonkwo',
       role: 'Busy mum in Lagos',
-      body: 'Thumo saves me at least two hours every week. Groceries and school lunch â€” sorted!',
+      body: 'Thumo saves me at least two hours every week. Groceries and school lunch  -  sorted!',
       avatar: '/images/avatar-ng-1.png',
     },
     {
@@ -524,7 +501,7 @@ const NG_CONTENT: PageContent = {
 
   join: {
     headline: 'Be Part of the Movement',
-    subheadline: 'Whether you want to earn or grow your business â€” Swoop is your partner.',
+    subheadline: 'Whether you want to earn or grow your business  -  Swoop is your partner.',
     merchant: {
       title: 'Partner as a Merchant',
       subtitle: 'Reach more customers, get fast payouts, and grow your business with a platform that puts you first',
@@ -618,7 +595,7 @@ const SZ_CONTENT: PageContent = {
       {
         number: '3',
         title: 'Track and receive your food Watch your order in real time. Eat.',
-        description: 'Watch your order move in real timeâ€”from the kitchen to your location. No guessing, just live updates.',
+        description: 'Watch your order move in real time - from the kitchen to your location. No guessing, just live updates.',
         screenImage: '/assets/SZ-step-3.png',
       },
     ],
@@ -635,7 +612,7 @@ const SZ_CONTENT: PageContent = {
     {
       id: 'grocery',
       title: 'Groceries',
-      description: 'Fresh, local produce and daily essentials â€” delivered within the hour.',
+      description: 'Fresh, local produce and daily essentials  -  delivered within the hour.',
       color: 'grocery',
       icon: 'ShoppingBasket',
     },
@@ -652,7 +629,7 @@ const SZ_CONTENT: PageContent = {
     { value: '50K+', label: 'Happy Customers' },
     { value: '500+', label: 'Partner Restaurants' },
     { value: '2', label: 'Major Cities' },
-    { value: '4.9â˜…', label: 'App Store Rating' },
+    { value: '4.9★', label: 'App Store Rating' },
   ],
 
   pricing: {
@@ -696,7 +673,7 @@ const SZ_CONTENT: PageContent = {
     {
       name: 'Sibusiso Nxumalo',
       role: 'Entrepreneur, Manzini',
-      body: 'Incredibly fast delivery. The app is super smooth â€” I recommend it to everyone.',
+      body: 'Incredibly fast delivery. The app is super smooth  -  I recommend it to everyone.',
       avatar: '/images/avatar-sz-2.png',
     },
     {
@@ -709,11 +686,11 @@ const SZ_CONTENT: PageContent = {
 
   join: {
     headline: 'Be Part of the Movement',
-    subheadline: 'Whether you want to earn or grow your business â€” Swoop is your partner.',
+    subheadline: 'Whether you want to earn or grow your business  -  Swoop is your partner.',
     merchant: {
       title: 'Partner as a Merchant',
       subtitle: 'No upfront costs and guaranteed weekly payouts.',
-      bullets: ['White-glove onboarding', 'Transparent pricing â€“ no price manipulation', 'Completely free to start!'],
+      bullets: ['White-glove onboarding', 'Transparent pricing - no price manipulation', 'Completely free to start!'],
     },
     rider: {
       title: 'Become a rider',
@@ -727,14 +704,14 @@ const SZ_CONTENT: PageContent = {
 
   faqs: SHARED_FAQS,
   downloadHeadline: 'Experience Swoop!',
-  downloadSubheadline: 'From your favorite local spots to hidden gems, get hot meals brought straight to your doorâ€”no stress, no waiting.',
+  downloadSubheadline: 'From your favorite local spots to hidden gems, get hot meals brought straight to your door - no stress, no waiting.',
   downloadCtaVariant: 'app-stores',
   appStoreUrl: 'https://apps.apple.com/ng/app/swoop-food/id6749094829',
   playStoreUrl: 'https://play.google.com/store/apps/details?id=com.thumoapp.users',
 };
 
 // ---------------------------------------------------------------------------
-// Exported map â€” use this in pages/hooks
+// Exported map  -  use this in pages/hooks
 // ---------------------------------------------------------------------------
 export const CONTENT_MAP: Record<Locale, PageContent> = {
   NG: NG_CONTENT,
