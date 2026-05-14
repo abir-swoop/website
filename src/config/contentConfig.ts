@@ -258,8 +258,8 @@ const SHARED_FAQS: FaqSection[] = [
         answer: 'Download the Swoop app, browse restaurants near you, add items to your cart, and checkout. The whole process takes about a minute.',
       },
       {
-        question: 'Is there a minimum order?',
-        answer: 'Yes. The minimum order amount is 3,500.',
+        question: 'Is there a minimum order amount?',
+        answer: 'No. There is no minimum order amount, however, below 3,500, a small order fee will be incurred.',
       },
       {
         question: 'Can I order from more than one restaurant at a time?',

@@ -40,7 +40,7 @@ export default function TermsPage({ locale = 'NG' }: Props) {
 
   return (
     <Layout content={content}>
-      <section className="w-full bg-white px-6 md:px-20 py-20">
+      <section className="w-full bg-white px-6 md:px-20 py-20 mt-8">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-extrabold text-[#07003b] mb-2">Swoop Terms and Conditions</h1>
           <p className="text-[#595672] mb-8">Applicable to Users, Merchants, and Riders - {getTitle()}</p>
