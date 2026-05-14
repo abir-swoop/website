@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { COUNTRIES, type Locale } from '../../config/contentConfig';
-import { localeRoute, homeRoute } from '../../utils/localeRoutes';
+import { homeRoute, localeDomainUrl } from '../../utils/localeRoutes';
 
 // Figma assets
 const swoopWordmark = '/assets/swoop-wordmark-nav.svg';
@@ -25,7 +25,6 @@ interface Props {
  */
 export default function Navbar({ locale }: Props) {
   const navigate = useNavigate();
-  useLocation(); // re-render on route change
   const [open, setOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const dropRef = useRef<HTMLDivElement>(null);
@@ -53,7 +52,7 @@ export default function Navbar({ locale }: Props) {
 
   function handleCountrySelect(code: Locale) {
     setOpen(false);
-    navigate(localeRoute(code));
+    window.location.assign(localeDomainUrl(code));
   }
 
   const home = homeRoute(locale);

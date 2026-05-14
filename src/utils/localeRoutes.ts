@@ -28,3 +28,11 @@ export function localeRoute(locale: Locale): string {
 export function homeRoute(locale: Locale): string {
   return localeRoute(locale);
 }
+
+/**
+ * Resolve the canonical landing-page URL for a locale.
+ * Used by the country dropdown to switch top-level domains.
+ */
+export function localeDomainUrl(locale: Locale): string {
+  return locale === 'NG' ? 'https://swoop.com.ng' : 'https://swoop.co.sz';
+}
